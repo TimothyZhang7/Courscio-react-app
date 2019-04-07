@@ -29,13 +29,11 @@ class MainBoard extends Component{
 	}
 
 	componentDidMount(){
-		gapi.signin2.render('g-signin2', {
-    	'scope': 'https://www.googleapis.com/auth/plus.login',
+		window.gapi.signin2.render('g-signin2', {
     	'width': 120,
     	'height': 30,
     	'longtitle': true,
-    	'theme': 'dark',
-    	'onsuccess': this. onSignIn
+    	'onsuccess': this.onSignIn
   		});  
 	}
 
@@ -127,7 +125,7 @@ class MainBoard extends Component{
 						<li className="nav-item"><a href="home.html">Home</a></li>
 						<li className="nav-item"><a href="home.html">About us</a></li>
 						<li className="nav-item"><a href="google_api_test.html">Contact us</a></li>
-						<div class="g-signin2 gButton" data-onsuccess={this.onSignIn} data-width="120" data-height="30"></div>
+						<div id = 'google-sign-in-button'></div>
 					</ul>
 				</div>
 				<div className= "col-xs-0 col-md-0 col-lg-1"></div>
