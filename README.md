@@ -7,4 +7,3 @@ In the project directory, you can run:
 ### `npm start`
 
 Backend is connected at api.courscio.com
-By these requirements the testing environment can function as expected
