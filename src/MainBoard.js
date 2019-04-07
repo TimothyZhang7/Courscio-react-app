@@ -116,7 +116,7 @@ class MainBoard extends Component{
 						<li className="nav-item"><a href="home.html">Home</a></li>
 						<li className="nav-item"><a href="home.html">About us</a></li>
 						<li className="nav-item"><a href="google_api_test.html">Contact us</a></li>
-						<div class="g-signin2 gButton" data-onsuccess="onSignIn" data-width="120" data-height="30"></div>
+						<div class="g-signin2 gButton" data-onsuccess={this.onSignIn} data-width="120" data-height="30"></div>
 					</ul>
 				</div>
 				<div className= "col-xs-0 col-md-0 col-lg-1"></div>
