@@ -4,10 +4,6 @@
     #instText {
         font-size: 23px;
     }
-    #commentPic{
-        width: 148px;
-        height: auto;
-    }
 
     .box15:hover .title{
         top: 30%;
@@ -34,10 +30,7 @@
     }
 }
 @media only screen and (min-width:1024px) {
-    #commentPic{
-        width: 208px;
-        height: auto;
-    }
+
     #c_rating span{
          /* display: none;*/
         display: none;

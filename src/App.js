@@ -515,16 +515,16 @@ render(){
 			<div className="App">
 				<div className="Container">
 					<Row>
+						<div class="col-lg-1 col-md-0 col-0"></div>
+						<div class="filterLarge col-lg-2 col-md-3 col-12">
+							<p id="filterWord">FILTER BY</p>
+						</div>
+					</Row>
+					<Row>
 						<Col xs={0} md={0} lg={1}>
 						</Col>
 						<Col className="filterLarge" xs={12} md={3} lg={2}>
 							<div container="true" className="filtersmall">
-								<button variant="primary" onClick={() => this.clicked() }>
-					              	<div>
-					                	<p id="filterWord">FILTER BY</p>
-					                </div>
-					            </button>
-
 					            <div id = {v}>
 								<Form.Group as={Col} className="formGroup" controlId="formGridTerm">
 									<Form.Control as="select" className="formControl" defaultValue= "Fall 2019">

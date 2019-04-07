@@ -98,15 +98,22 @@ h1{
 
 h2{
 	font-size: 34px;
+	padding-left: 0.2em;
 }
 
 p{
 	font-size: 16px;
+	line-height: 1.4;
 }
+
 
 #bannerCard {
 	margin-left: 0px;
 	margin-right: 0px;
+}
+
+.card-body {
+	padding: 0.25rem;
 }
 .card {
 	border-color: transparent;
@@ -118,7 +125,7 @@ p{
 }
 
 .card-text {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .card-img-top {
@@ -126,10 +133,6 @@ p{
 	height: auto;
 }
 
-#commentPic {
-	width: 90%;
-	height: auto;
-}
 
 
 #findCourse-button {
@@ -145,6 +148,10 @@ p{
 #aboutpng {
 	width: 130%;
 	height: auto;
+}
+
+#about_text {
+	padding-left: 1em;
 }
 
 .top-buffer .image-fluid {
