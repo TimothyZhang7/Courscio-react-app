@@ -16,7 +16,7 @@
     "react-toggle-display": "^2.2.0"
   },
   "scripts": {
-    "start": "set HTTPS=true&&react-scripts start",
+    "start": "HTTPS=true PUBLIC_URL=https://courscio.com react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
