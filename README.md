@@ -6,6 +6,5 @@ In the project directory, you can run:
 
 ### `npm start`
 
-You need to deploy a sql server at http://localhost:3360
-You need to deploy the backend spring-boot app at http://localhost:8080
+Backend is connected at api.courscio.com
 By these requirements the testing environment can function as expected
