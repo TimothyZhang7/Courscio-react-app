@@ -7,7 +7,6 @@ import Search from './Search';
 
 const API = '/api/v1/course/keyword?'
 
-const GOOGLE_BUTTON_ID = 'google-sign-in-button';
 
 class MainBoard extends Component{
 	constructor(){
@@ -22,7 +21,7 @@ class MainBoard extends Component{
 			search: "NONE",
 			response: "",
 		}
-		this.handle_search = this.handle_search.bind(this);
+		this.handle_search = this.handle_search.bind(this)
 		this.doSearch = this.doSearch.bind(this)
 		this.onSignIn = this.onSignIn.bind(this)
 		this.translate_weekday = this.translate_weekday.bind(this)
@@ -118,14 +117,14 @@ class MainBoard extends Component{
 
 				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span className="navbar-toggler-icon"></span>
-				</button>   
+				</button>
 
 				<div className="collapse navbar-collapse col-md-auto col-lg-4" id="navbarSupportedContent">
 					<ul className="navbar-nav navbar-right">
 						<li className="nav-item"><a href="home.html">Home</a></li>
 						<li className="nav-item"><a href="home.html">About us</a></li>
 						<li className="nav-item"><a href="google_api_test.html">Contact us</a></li>
-						<div id = 'google-sign-in-button'></div>
+						<div id='g-signin2' class="g-signin2 gButton" data-onsuccess={this.onSignIn} data-width="120" data-height="30"></div>
 					</ul>
 				</div>
 				<div className= "col-xs-0 col-md-0 col-lg-1"></div>
