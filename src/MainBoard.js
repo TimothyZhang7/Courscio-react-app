@@ -28,6 +28,17 @@ class MainBoard extends Component{
 		this.translate_weekday = this.translate_weekday.bind(this)
 	}
 
+	componentDidMount(){
+		gapi.signin2.render('g-signin2', {
+    	'scope': 'https://www.googleapis.com/auth/plus.login',
+    	'width': 120,
+    	'height': 30,
+    	'longtitle': true,
+    	'theme': 'dark',
+    	'onsuccess': this. onSignIn
+  		});  
+	}
+
     onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
   		var id_token = googleUser.getAuthResponse().id_token;
