@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="google-signin-client_id" content="1008678353700-q0v75rqkprkkru1gu8n6djr94jakqkke.apps.googleusercontent.com">
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<script>
+			function onSignIn(googleUser) {
+  				var id_token = googleUser.getAuthResponse().id_token;
+  				console.log(id_token)
+			}
+		</script>
+		<title>
+			Google API test
+		</title>
+	</head>
+	<body>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	</body>
+</html>

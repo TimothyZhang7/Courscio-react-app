@@ -1,0 +1,269 @@
+html, body { 
+	margin:0;
+	padding:0;
+	width:100%;
+	height:100%;
+	overflow: auto;
+}
+
+.row {
+	margin-top, margin-bottom: 300px;
+}
+
+nav {
+	margin-bottom: 4%;
+}
+
+.col-xs-0.col-sm-1.col-md-1.col-lg-1{
+	padding:0px;
+	margin: 0px;
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.col-md-7.col-lg-7.ml-3.mt-1{
+	padding: 0px;
+}
+
+
+.col-lg-auto {
+	padding-right: 0px;
+}
+
+#logo{
+	height: 4.3em;
+}
+
+
+.nav-item{
+	margin-left: 1.5em;
+	font-family: "Open Sans",sans-serif;
+	text-align: left;
+}
+
+.navbar-nav.navbar-right li a {
+	font-size: 1.1em;
+    color: #3d3d3d ;
+}
+
+#navcontainer{
+	width:52%;
+}
+
+.navbar{
+	border-bottom: 1px solid lightgray ;
+}
+
+
+.btn-light {
+	background-color: transparent !important;
+	border-color: #ced4da;
+}
+
+.navbar-brand{
+	padding-left:0px;
+}
+
+#sloganRow {
+	margin-bottom: 3.5% !important;
+	margin-left: 0px;
+}
+
+#findCourse{
+	text-align: right;
+}
+.btn-danger{
+	width: 100%;
+	height: 70%;
+	margin-top: 8%;
+	background-color: #E25A64 !important;
+	border-color:  #E25A64 !important;
+	box-shadow: 5px 8px 8px lightgrey;
+	font-size: 22px;
+}
+
+h1{
+	font-size: 38px;
+}
+
+h2{
+	font-size: 34px;
+}
+
+p{
+	font-size: 16px;
+}
+
+#bannerCard {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.card {
+	border-color: transparent;
+}
+
+.card-title {
+	font-size: 26px;
+	text-align: left;
+}
+
+.card-text {
+	font-size: 18px;
+}
+
+.card-img-top {
+	width: 110%;
+	height: auto;
+}
+
+#commentPic {
+	width: 90%;
+	height: auto;
+}
+
+
+#findCourse-button {
+	color: white;
+}
+
+.top-buffer { margin-top:20px; }
+
+.row.my-4{
+	height: 15%;
+}
+
+#aboutpng {
+	width: 130%;
+	height: auto;
+}
+
+.top-buffer .image-fluid {
+	width: 250%;
+	height: auto;
+}
+
+
+.box15{
+	position:relative
+}
+
+.box15 img{
+	width:100%;
+	height:auto
+}
+
+.box15 .box-content{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	transition:all .5s ease 0s}
+
+.box15:hover .box-content{
+	background-color:rgba(255,255,255,.8)
+}
+
+.box15 .box-content:after,.box15 .box-content:before{
+	content:"";
+	width:50px;
+	height:50px;
+	position:absolute;opacity:0;
+	transform:scale(1.5);
+	transition:all .6s ease .3s
+}
+
+.box15 .box-content:before{
+	border-left:1px solid #040404;
+	border-top:1px solid #040404;
+	top:19px;
+	left:19px
+}
+
+.box15 .box-content:after{
+	border-bottom:1px solid #040404;
+	border-right:1px solid #040404;
+	bottom:19px;right:19px
+}
+
+.box15:hover .box-content:after,.box15:hover .box-content:before{
+	opacity:1;
+	transform:scale(1)
+}
+
+.box15 .title{
+	font-size:22px;
+	color:#000;
+	margin:0;
+	position:relative;
+	text-align: center;
+	top:0;
+	opacity:0;
+	transition:all 1s ease 10ms
+}
+
+.box15 .text{
+	font-size:16px;
+	color:#000;
+	margin:0;
+	position:relative;
+	text-align: center;
+	margin-top: 0.5em;
+	opacity:0;
+	transition:all 1s ease 10ms
+	font-weight: 300;
+}
+
+.box15:hover .title{
+	top:39%;opacity:1;
+	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+}
+
+.box15:hover .text{
+	top:39%;opacity:1;
+	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+}
+
+.box15 .title:after{
+	content:"";
+	width:0;
+	height:1px;
+	background:#040404;
+	position:absolute;
+	bottom:0px;
+	left:0;
+	right:0;
+	margin:0 auto;
+	transition:all 1s ease 0s
+}
+
+
+.box15:hover .title:after {
+	width:80%;
+	transition:all 1s ease .8s
+}
+
+footer a {
+	color: white;
+}
+
+@media only screen and (max-width:990px){
+	.box15{margin-bottom:30px}
+	nav {
+		margin-right: 20px;
+	}
+}
+
+a:hover {
+	color: #E0E0E0;
+}

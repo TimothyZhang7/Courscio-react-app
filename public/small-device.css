@@ -1,0 +1,136 @@
+@media only screen and (max-width:600px){
+
+	.btn-danger{
+		width: 100%;
+		height: auto;
+	}
+
+	.row {
+		width: 100%;
+		margin: 0px;
+	}
+
+	.card {
+	      overflow: hidden;
+	  }
+
+    .card-img-top {
+        position: absolute;
+        height: auto;
+        max-height: 100%;
+        width: auto;
+        max-width: 40%;
+    }
+
+    .card-img-top ~ .card-body {
+        margin-left: 40%;
+    }
+
+    .box15{
+    	position:relative
+    }
+
+    .box15 img{
+    	width:100%;
+    	height:auto
+    }
+
+    .box15 .box-content{
+    	width:100%;
+    	height:100%;
+    	position:absolute;
+    	top:0;
+    	left:0;
+    	transition:all .5s ease 0s}
+
+    .box15:hover .box-content{
+    	background-color:rgba(255,255,255,.8)
+    }
+
+    .box15 .box-content:after,.box15 .box-content:before{
+    	content:"";
+    	width:50px;
+    	height:50px;
+    	position:absolute;opacity:0;
+    	transform:scale(1.5);
+    	transition:all .6s ease .3s
+    }
+
+    .box15 .box-content:before{
+    	border-left:1px solid #040404;
+    	border-top:1px solid #040404;
+    	top:5px;
+    	left:5px
+    }
+
+    .box15 .box-content:after{
+    	border-bottom:1px solid #040404;
+    	border-right:1px solid #040404;
+    	bottom:5px;
+    	right:5px;
+    }
+
+    .box15:hover .box-content:after,.box15:hover .box-content:before{
+    	opacity:1;
+    	transform:scale(1)
+    }
+
+    .box15 .title{
+    	font-size:14px;
+    	color:#000;
+    	margin:0;
+    	position:relative;
+    	text-align: center;
+    	top:0;
+    	opacity:0;
+    	transition:all 1s ease 10ms
+    }
+
+    .box15 .text{
+    	font-size:12px;
+    	color:#000;
+    	margin:0;
+    	position:relative;
+    	text-align: center;
+    	margin-top: 0.5em;
+    	opacity:0;
+    	transition:all 1s ease 10ms
+    	font-weight: 300;
+    }
+
+    .box15:hover .title{
+    	top:39%;opacity:1;
+    	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+    }
+
+    .box15:hover .text{
+    	top:39%;opacity:1;
+    	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+    }
+
+    .box15 .title:after{
+    	content:"";
+    	width:0;
+    	height:1px;
+    	background:#040404;
+    	position:absolute;
+    	bottom:0px;
+    	left:0;
+    	right:0;
+    	margin:0 auto;
+    	transition:all 1s ease 0s
+    }
+
+
+    .box15:hover .title:after {
+    	width:80%;
+    	transition:all 1s ease .8s
+    }
+
+
+	#ourVision {
+		margin-left: 1.5rem;
+	}
+
+
+}

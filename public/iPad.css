@@ -1,0 +1,60 @@
+@media only screen and (max-width:768px) and (min-width:700px){
+
+
+    #instText {
+        font-size: 23px;
+    }
+    #commentPic{
+        width: 148px;
+        height: auto;
+    }
+
+    .box15:hover .title{
+        top: 30%;
+    }
+    .box15 .title{
+        font-size: 15px;
+    }
+
+    .box15 .text{
+        font-size: 10px;
+    }
+
+    .box15 .box-content:before {
+        top:15px;
+        left: 10px;
+    }
+
+    .box15 .box-content:after{
+        bottom: 0px;
+        right:10px;
+    }
+    #long_name{
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width:1024px) {
+    #commentPic{
+        width: 208px;
+        height: auto;
+    }
+    #c_rating span{
+         /* display: none;*/
+        display: none;
+    }
+    #c_rating:after{
+
+        content: 'Course Rating';
+
+    }
+    @media only screen and (max-width:1024px) {
+        .box15 .box-content:after{
+            bottom: 10px;
+        }
+
+        #long_name{
+            font-size: 19px;
+        }
+
+    }
+}
