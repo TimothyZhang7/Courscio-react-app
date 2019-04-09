@@ -26,17 +26,23 @@ class Search extends Component{
 	}
 
 	render(){
-		return(
-			<form className="input-group-btn form-inline col-md-12 w-100 col-lg-10 offset-lg-2">
-            <div className="input-group" id="searchbar">
-            	<input className="form-control" id="input_value" type="text" placeholder="Search Course Name, Instructor, or Keywords..." aria-label="Search"/>
-            	<div className="input-group-append">
-            	<button className="btn btn-light" type='button' onClick={this.search}>
-            		<i className="fas fa-search"></i>
-                </button>
-            	</div>
-            </div>
-        	</form>
+		return (
+      // <form className="input-group-btn form-inline col-md-12 w-100 col-lg-10 offset-lg-2"></form>
+			<form className="input-group-btn form-inline col-md-12 col-lg-10">
+        <div className="input-group" id="searchbar">
+          <input
+            className="form-control"
+            id="input_value"
+            type="text"
+            placeholder="Search Course Name, Instructor, or Keywords..." 
+            aria-label="Search" />
+          <div className="input-group-append">
+          <button className="btn btn-light" type='button' onClick={this.search}>
+            <i className="fas fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
 		)
 	}
 }

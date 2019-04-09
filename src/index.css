@@ -1,3 +1,8 @@
+/* Main CSS file for app */
+:root {
+  --theme-primary-color: #7EA4DE;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,17 +11,29 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .gButton {
-  padding-left:20px; 
+  margin: 0 18px; 
 }
 
 .nav-item {
-  padding-top: 3px;
+  margin: 0 8px;
+  font-family: "Open Sans", sans-serif;
+  color: #3d3d3d;
+  font-size: 1.3em;
+  font-weight: medium;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
 }

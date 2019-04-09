@@ -1,21 +1,34 @@
+/* Home page HTML content styles only */
 html, body { 
-	margin:0;
-	padding:0;
-	width:100%;
-	height:100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
 	overflow: auto;
 }
 
 .row {
-	margin-top, margin-bottom: 300px;
+	margin-top: 300px 0;
 }
 
 nav {
-	margin-bottom: 4%;
+	margin-bottom: 32px;
+}
+
+.nav-item {
+  margin: 0 16px;
+  font-family: "Open Sans",sans-serif;
+  color: #3d3d3d;
+  font-size: 1.2em;
+  font-weight: medium;
+}
+
+.nav-item:hover {
+  color: darkslategray;
 }
 
 .col-xs-0.col-sm-1.col-md-1.col-lg-1{
-	padding:0px;
+	padding: 0px;
 	margin: 0px;
 }
 
@@ -35,7 +48,6 @@ nav {
 	padding: 0px;
 }
 
-
 .col-lg-auto {
 	padding-right: 0px;
 }
@@ -44,34 +56,13 @@ nav {
 	height: 4.3em;
 }
 
-
-.nav-item{
-	margin-left: 1.5em;
-	font-family: "Open Sans",sans-serif;
-	text-align: left;
+.navbar {
+	border-bottom: 1px solid lightgray;
 }
-
-.navbar-nav.navbar-right li a {
-	font-size: 1.1em;
-    color: #3d3d3d ;
-}
-
-#navcontainer{
-	width:52%;
-}
-
-.navbar{
-	border-bottom: 1px solid lightgray ;
-}
-
 
 .btn-light {
 	background-color: transparent !important;
 	border-color: #ced4da;
-}
-
-.navbar-brand{
-	padding-left:0px;
 }
 
 #sloganRow {
@@ -82,6 +73,7 @@ nav {
 #findCourse{
 	text-align: right;
 }
+
 .btn-danger{
 	width: 100%;
 	height: 70%;
@@ -92,28 +84,23 @@ nav {
 	font-size: 22px;
 }
 
-h1{
-	font-size: 38px;
+h1 {
+	font-size: 2em;
 }
 
-h2{
+h2 {
 	font-size: 34px;
 	padding-left: 0.2em;
 }
 
-p{
+p {
 	font-size: 16px;
 	line-height: 1.4;
 }
 
-
 #bannerCard {
 	margin-left: 0px;
 	margin-right: 0px;
-}
-
-.card-body {
-	padding: 0.25rem;
 }
 .card {
 	border-color: transparent;
@@ -132,8 +119,6 @@ p{
 	width: 110%;
 	height: auto;
 }
-
-
 
 #findCourse-button {
 	color: white;
@@ -158,7 +143,6 @@ p{
 	width: 250%;
 	height: auto;
 }
-
 
 .box15{
 	position:relative
@@ -185,7 +169,8 @@ p{
 	content:"";
 	width:50px;
 	height:50px;
-	position:absolute;opacity:0;
+  position:absolute;
+  opacity:0;
 	transform:scale(1.5);
 	transition:all .6s ease .3s
 }
@@ -227,33 +212,34 @@ p{
 	text-align: center;
 	margin-top: 0.5em;
 	opacity:0;
-	transition:all 1s ease 10ms
+	transition:all 1s ease 10ms;
 	font-weight: 300;
 }
 
 .box15:hover .title{
-	top:39%;opacity:1;
-	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+  top: 39%; 
+  opacity: 1;
+	transition: all .5s cubic-bezier(1,-.53,.405,1.425) 10ms;
 }
 
 .box15:hover .text{
-	top:39%;opacity:1;
-	transition:all .5s cubic-bezier(1,-.53,.405,1.425) 10ms
+  top: 39%;
+  opacity: 1;
+	transition: all .5s cubic-bezier(1,-.53,.405,1.425) 10ms;
 }
 
 .box15 .title:after{
-	content:"";
-	width:0;
-	height:1px;
+	content: "";
+	width: 0;
+	height: 1px;
 	background:#040404;
-	position:absolute;
-	bottom:0px;
-	left:0;
-	right:0;
-	margin:0 auto;
-	transition:all 1s ease 0s
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transition: all 1s ease 0s
 }
-
 
 .box15:hover .title:after {
 	width:80%;

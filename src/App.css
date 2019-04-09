@@ -1,16 +1,13 @@
 @import '~antd/dist/antd.css';
 
 .App {
-  text-align: center;
-  margin-top: 3%;
-
+  margin-top: 24px;
 }
 
-
 .classCard {
-  
-  width: auto;
-  margin: 0px auto 2.5em 2.5em ;
+  width: 100%;
+  padding: 0 16px;
+  margin-bottom: 16px;
 }
 
 .formGroup {
@@ -19,11 +16,14 @@
 }
 
 .portrait {
-  margin: 2em 2em 2em 2em ;
+  margin: 16px;
+  border-radius: 1000px;
+  width: 50%;
+  height: auto;
 }
 
 .elem_margin {
-  margin: 0.5em 0.5em 0.5em 0.5em ;
+  margin: .5em;
 }
 
 .textmid {
@@ -32,34 +32,32 @@
 
 #filterWord {
   font-family: "Helvetica Neue", Helvetica;
-  text-align: left;
-  padding: 0px 1em;
   font-weight: 600;
+  font-size: 1.5em;
   color: #3f444c;
 }
 
 .formControl {
-   box-shadow: 2px 2px 3px lightgrey;
-   font-family: "Open Sans",sans-serif;
-   font-size: 1em;
-   color: gray;
-   height: 3.5em;
+  font-family: "Open Sans",sans-serif;
+  font-size: 1em;
+  color: gray;
+  height: 3em;
 }
 
-option{
+option {
   font-size: 1em;
   box-shadow: transparent;
 }
 
 .sliderbox {
-  margin: 3em 0em 3em 0.5em;
+  margin: 32px 16px;
 }
 
 .slider {
   color: red;
 }
 
-#weekBar{
+#weekBar {
   padding-left: 10px;
 }
 
@@ -71,7 +69,7 @@ option{
 
 }
 
-.noCourse-card{
+.noCourse-card {
   border-color: transparent;
   box-shadow: 0px 0px 0px transparent !important;
 }
@@ -94,58 +92,49 @@ option{
 
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-group{
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-group {
   background-color: transparent !important;
   color: #91d5ff !important; 
   border-color: transparent !important;
   box-shadow: none;
 }
 
-.schedulePop{
-  margin: 0em 0em 1em 0em;
-}
-
-.dashPop{
-  margin: 1em 0em 0em 0em;
-}
-
-.schedulePop, .dashPop{
-    width: 6.5em;
-    background-color: #53afe8;
-    border-color: #53afe8;
-    box-shadow: 2px 4px 6px lightgray;
-
+.schedulePop, .dashPop {
+  width: 6.5em;
+  background-color: #7EA4DE;
+  border: none;
+  height: 44px;
+  font-weight: bold;
+  margin: 18px 0;
 }
 
 .card {
-  box-shadow: 2px 4px 6px lightgray;
   border-radius: 6px;
-  background-color: #ffffff !important;/*linear-gradient(to bottom left, #f2f4f7 0%, #ffffff 103%)*/;
+  background-color: #ffffff !important;
 }
 
 .card-body {
-  padding: 0px 0px 15px 15px;
+	padding: 0;
 }
 
-.card-title{
+.card-title {
   font-size: 20px;
   text-align: left;
 }
 
-.card-subtitle{
+.card-subtitle {
   font-size: 17px;
   text-align: left;
   margin-bottom: 18px;
   color: #A0A0A0;
 }
 
-
-.card-text{
+.card-text {
   text-align: left;
   font-size: 14px;
 }
 
-td{
+td {
   vertical-align: top;
   padding-bottom: 10px;
 }
@@ -156,39 +145,45 @@ td{
   padding-right: 8px;
 }
 
-
 table {
   margin-bottom: 8px;
 }
 
 #wishlist {
-  background-color: #E25A64;
-  border-color: #E25A64;
+  background: #31906F;
 }
 
-#select{
-  background-color: mediumseagreen;
-  border-color: mediumseagreen;
+#select {
+  background:#E25A64;
+  opacity: 63%;
 }
 
-#select, #wishlist {
-  margin-right: 40px;
-  margin-top: 40px;
-  width:80%;
-  box-shadow: 2px 4px 6px lightgray;
-  font-size: 15.5px;
+#syllabus {
+  background:#7EA4DE;
+}
+
+#select, #wishlist, #syllabus {
+  margin: 0 12px;
+  font-weight: bold;
+  border: none;
+  min-height: 45px;
+}
+
+.custom-modal {
+  border: none;
 }
 
 .cardButton {
-  margin-top: 100px;
-  text-align: center;
-  margin: auto;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 #courseInfo {
   margin-top: 20px;
 }
-
 
 #flag {
   width: 80px;
@@ -199,11 +194,11 @@ table {
   background: skyblue;
   color: white;
   font-size: 36px;
- /* letter-spacing: 0.2em;*/
+  text-align: center;
   text-align: top;
-  box-shadow: 4px 0px 2px lightgray;
   top: -2px;
 }
+
 #flag:after {
   content: "";
   position: absolute;
@@ -241,42 +236,40 @@ table {
   font-size: 12px;
 }
 
-.flip-main{
-    -webkit-transition: 1s;
-    -webkit-transform-style: preserve-3d;
-    -ms-transition: 1s;
-    -moz-transition: 1s;
-    -moz-transform: perspective(1000px);
-    -moz-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    transition: 1s;
-    transform-style: preserve-3d;
-    position: relative;
+.flip-main {
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -moz-transition: 1s;
+  -moz-transform: perspective(1000px);
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
+  position: relative;
 }
-.front{
-    position: relative;
-    -webkit-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    z-index: 2;
-    margin-bottom: 30px;
+.front {
+  position: relative;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+  margin-bottom: 30px;
 }
 
 .modal-dialog {
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   margin:0;
   padding:0;
 }
 
 .modal-content {
-  height:auto;
-  min-height: 100%;
-  border-radius:0;
+  height: 100%;
 }
 
 .rounded-circle {
-  height:auto;
-  width:60%;
+  height: 50px;
+  width: auto;
 }
 
 #selectMod, #wishlistMod, #syllabusMod {
@@ -288,13 +281,10 @@ table {
 }
 
 .card_padding {
-  padding-top: 1.5em;
-  padding-left: 2em;
+  padding: 16px;
 }
 
 .panel-body {
-  margin-left: 35px;
-  padding-right: 35px;
   width: 100%;
 }
 
@@ -306,16 +296,12 @@ table {
   #extraBtn {
     display: none;
   }
-  
   #notVisible {
     display: none;
   }
   #visible{
     display: inline;
   }
-  /* #filterdiv{
-    display: block;
-  } */
 }
 
 @media (min-width: 360px){

@@ -1,11 +1,10 @@
-
 import React, { Component } from 'react';
 import {Card, Row, Col, Form, Button, ButtonToolbar, ToggleButton, ToggleButtonGroup, Popover, OverlayTrigger} from 'react-bootstrap';
 import {Slider, Rate} from 'antd';
 import axios from 'axios';
 import './App.css';
 
-const API = '/v1/'
+const API = '/v1/';
 
 const noCourse = {cname: "Error", credit: 0, crn: "00000", description: "Contact Enginner",
 end_t: "2400", id:-1, key: "-1MON", location: "None", 
@@ -58,27 +57,24 @@ class App extends Component {
 	}
 
 	clicked(){
-	    this.setState({
-	      showMe : ! this.state.showMe
-	    })
+    this.setState({
+      showMe : ! this.state.showMe
+    })
 	}
-
 	async componentDidMount() {
 		this.setState({
 			isLoading: true
 		});
 
 		console.log("TO ROWS")
-		
-
-		try{
+		try {
 			var courseRows = []
 			var courseRows_raw = []
 			const courseRow = <Card className="noCourse-card" text="black" key="0">
 					<Card.Body>
 						<Card.Title>Use the filter or search box to find courses</Card.Title>
 					</Card.Body>
-					<img class="card-img-bottom" src="comics/noCourse.png" alt="noCourse" />
+					<img className="card-img-bottom" src="comics/noCourse.png" alt="noCourse" />
 					<br />
 				</Card>
 			courseRows.push(courseRow)
@@ -96,7 +92,6 @@ class App extends Component {
 	}
 
 	componentWillReceiveProps(nextProps){
-		
 		var raw_data = this.renderCardList(nextProps.response)
 		var courses = this.raw_data_extract(this.weekday_filter(this.dept_filter(raw_data, this.state.dept), this.state.weekdays));
 		console.log(raw_data)
@@ -143,21 +138,21 @@ class App extends Component {
 		}
 	}
 
-	renderCardList(response){
+	renderCardList(response) {
 		var courseRows_raw = []
 		var weekdayRow = ""
 		var weekdays = []
 		const filtered = response
 		for(var i= 0; i< filtered.length; i++) {
 			weekdayRow = "";
-			weekdays = []
+			weekdays = [];
 			const cur_course = filtered[i];
-			while (i < filtered.length && cur_course.crn === filtered[i].crn){
+			while (i < filtered.length && cur_course.crn === filtered[i].crn) {
 				weekdayRow = weekdayRow + " " + this.translate_weekday(filtered[i].weekday);
 				weekdays.push(filtered[i].weekday);
-				i++
+				i++;
 			}
-			i--
+			i--;
 			const courseRow = <Card className="classCard" bg="light" text="#383838" key={cur_course.key}>
 			  <Card.Body>
 			  <Row>
@@ -177,7 +172,7 @@ class App extends Component {
 							</tr>
 							<tr>
 								<td className="rowTitle">Instructor:</td>
-								<td id="instructor">{cur_course.instructor}</td>
+								<td id="instructor">{cur_course.name}</td>
 							</tr>
 							<tr>       
 								<td className="rowTitle">Description:</td>
@@ -191,12 +186,14 @@ class App extends Component {
 						<div id="flag">
 							<span id="flagtext">Course Rating</span> <br /><p id="courseScore">{cur_course.score}</p>
 						</div>
-						<div className="cardButton">
-						  <Button id="select" value= {cur_course.id} variant="success">Add to Schedule</Button>
-						  <Button id="wishlist" value= {cur_course.id} variant="danger">Add to Wishlist</Button>
-						</div>
 					</Col>
 				</Row>
+          <Row>
+            <div className="cardButton">
+              <Button id="select" value= {cur_course.id} variant="success">Add to Schedule</Button>
+              <Button id="wishlist" value= {cur_course.id} variant="danger">Add to Wishlist</Button>
+            </div>
+          </Row>
 			  </Card.Body>
 			  <br />
 			</Card>
@@ -219,7 +216,7 @@ class App extends Component {
 		const a = this.state.slider_val[0]
 		const b = this.state.slider_val[1]
 
-		try{
+		try {
 			let query = 'course/filters?major=' + encodeURIComponent(subject) + '&semester=' + encodeURIComponent(this.state.semester)
 			console.log(weekdays)
 			weekdays.forEach((day)=>{
@@ -252,7 +249,7 @@ class App extends Component {
 		this.getCommentList(e.currentTarget.id)
 	}
 
-	findCourseById(raw_data, cid){
+	findCourseById(raw_data, cid) {
 		console.log(raw_data)
 		console.log(cid)
 		for (var i= 0; i< raw_data.length; i++){
@@ -263,7 +260,7 @@ class App extends Component {
 			}
 		}
 		console.log("Course not found, fatal logical error")
-		return undefined
+		return undefined;
 	}
 
 	onDateDeptChange(weekdays, dept){
@@ -308,31 +305,31 @@ class App extends Component {
 		})
 	}
 
-	time_filter(tuples,a,b){
-		var courseRows = []
-		for (var i=0; i< tuples.length; i++){
-			if (tuples[i][1] >= a && tuples[i][2] <= b){
-				courseRows.push(tuples[i][0])
+	time_filter(tuples,a,b) {
+		var courseRows = [];
+		for (var i=0; i< tuples.length; i++) {
+			if (tuples[i][1] >= a && tuples[i][2] <= b) {
+				courseRows.push(tuples[i][0]);
 			}
 		}
-		return courseRows
+		return courseRows;
 	}
 
-	dept_filter(tuples, dept){
-		var raw_data = []
+	dept_filter(tuples, dept) {
+		var raw_data = [];
 		if (tuples.length> 0 && tuples[0].length> 3 && dept !== "Nothing"){
 			for (var i=0; i<tuples.length; i++){
 				if (tuples[i][3] === dept){
 					raw_data.push(tuples[i])
 				}
 			}
-			return raw_data
-		}else{
-			return tuples
+			return raw_data;
+		} else {
+			return tuples;
 		}
 	}
 
-	weekday_filter(tuples, weekdays){
+	weekday_filter(tuples, weekdays) {
 		var raw_data = []
 		if (tuples.length > 0 && tuples[0].length> 4 && weekdays.length > 0){
 			for (var i=0; i< tuples.length; i++){
@@ -350,7 +347,7 @@ class App extends Component {
 				}
 			}
 			return raw_data;
-		}else{
+		} else {
 			return tuples;
 		}
 	}
@@ -389,7 +386,6 @@ class App extends Component {
 		this.ReMount(this.state.dept, this.state.weekdays)
 	}
 
-
 	translate_weekday(abbr){
 		if (abbr === "MON"){
 			return "M"
@@ -414,13 +410,13 @@ class App extends Component {
 		}
 	}
 
-	commentChange(event){
+	commentChange(event) {
 		this.setState({
 			comment: event.target.value
 		})
 	}
 
-	async submitComment(event){
+	async submitComment(event) {
 		var toSubmit = this.state.comment;
 		var query = 'rating?comment='+ encodeURIComponent(toSubmit)+ '&teaching_id='+ this.state.cur_course.id+ '&user_id='+ this.state.uid;
 		console.log(query)
@@ -444,9 +440,7 @@ class App extends Component {
 		for (var i= 0; i< comments_raw.length; i++){
 			const commentrow = (
 				<li className="media" key={i}>
-					<a className="pull-left">
-					</a>
-					<div className="media-body shadow-sm p-3 mb-2 bg-white rounded">
+          <div className="media-body shadow-sm p-3 mb-2 bg-white rounded">
 						<p>
 							{comments_raw[i].comment}
 						</p>
@@ -458,7 +452,6 @@ class App extends Component {
 		this.setState({
 			comments: comments
 		})
-
 	}
 
 	unloadCurCourse(){
@@ -467,11 +460,7 @@ class App extends Component {
 		})
 	}
 
-
-
-//  }
 render(){ 
-
 	const marks = {
 			0: '8am',
 			8.33: '',
@@ -498,45 +487,33 @@ render(){
 		var v;
 		let button;
 
-		if(showMe){
-		     v = "visible";
-		     console.log('vis')
-		   }
-		   else{
-		     v= "notVisible";
-		
-		     console.log('not')
-		
-		   }
-
-
+		if (showMe){
+      v = "visible";
+      console.log('vis')
+    } else{
+      v= "notVisible";
+      console.log('not')
+    }
 		return (
-
 			<div className="App">
-				<div className="Container">
+				<div className="container-fluid mx-2">
 					<Row>
-						<div class="col-lg-1 col-md-0 col-0"></div>
-						<div class="filterLarge col-lg-2 col-md-3 col-12">
-							<p id="filterWord">FILTER BY</p>
-						</div>
-					</Row>
-					<Row>
-						<Col xs={0} md={0} lg={1}>
-						</Col>
-						<Col className="filterLarge" xs={12} md={3} lg={2}>
+						<Col className="filterLarge" md={3} lg={3}>
+              <div className="filterLarge">
+                <span id="filterWord">Filter</span>
+              </div>
 							<div container="true" className="filtersmall">
-					            <div id = {v}>
-								<Form.Group as={Col} className="formGroup" controlId="formGridTerm">
+                <div id = {v}>
+								<Form.Group className="formGroup" controlId="formGridTerm">
 									<Form.Control as="select" className="formControl" defaultValue= "Fall 2019">
 										<option hidden>Term</option>
-										<option></option>
 										<option>Fall 2019</option>
 									</Form.Control>
 								</Form.Group>
 								</div>
 
-								<div id = {v}>
-								<Form.Group as={Col} className="formGroup" controlId="formGridSchool">
+								<div id={v}>
+								<Form.Group className="formGroup" controlId="formGridSchool">
 									<Form.Control as="select" className="formControl" defaultValue= "Arts, Science, and Engineering">
 										<option hidden>School</option>
 										<option></option>
@@ -545,8 +522,8 @@ render(){
 								</Form.Group>
 								</div>
 
-								<div id = {v}>
-									<Form.Group as={Col} className="formGroup" controlId="formGridDept">
+								<div id={v}>
+									<Form.Group className="formGroup" controlId="formGridDept">
 										<Form.Control as="select" className="formControl" onChange={(event) => this.searchActionInterpret(event.target.value,"NONE")}>
 											<option hidden>Department</option>
 											<option value="Nothing"></option>
@@ -640,20 +617,19 @@ render(){
 											<option value="Writing Program">WRT - Writing Program</option>
 										</Form.Control>
 
-									<div className="sliderbox">
-											<Slider range marks={marks} step={null} tooltipVisible={false} defaultValue={[0,100]} onAfterChange={this.onSliderChange}/>
-									</div>
+                    <div className="sliderbox">
+                      <Slider range marks={marks} step={null} tooltipVisible={false} defaultValue={[0,100]} onAfterChange={this.onSliderChange}/>
+                    </div>
 
-									<ButtonToolbar xs={12} md={3} lg={2}>
-										<ToggleButtonGroup type="checkbox" defaultValue={[1, 3]} id="weekBar">
-											<ToggleButton value={'MON'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>M</ToggleButton>
-											<ToggleButton value={'TUE'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>T</ToggleButton>
-											<ToggleButton value={'WEN'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>W</ToggleButton>
-											<ToggleButton value={'THU'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>Th</ToggleButton>
-											<ToggleButton value={'FRI'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>F</ToggleButton>
-										</ToggleButtonGroup>
-									</ButtonToolbar>
-
+                    <ButtonToolbar xs={12} md={3} lg={2}>
+                      <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]} id="weekBar">
+                        <ToggleButton value={'MON'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>M</ToggleButton>
+                        <ToggleButton value={'TUE'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>T</ToggleButton>
+                        <ToggleButton value={'WEN'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>W</ToggleButton>
+                        <ToggleButton value={'THU'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>Th</ToggleButton>
+                        <ToggleButton value={'FRI'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>F</ToggleButton>
+                      </ToggleButtonGroup>
+                    </ButtonToolbar>
 									</Form.Group>
 								</div>
 							</div>
@@ -662,26 +638,25 @@ render(){
 							{this.state.resultPrompt}
 							{this.state.courses}
 						</Col>
-						<Col xs={0} md={2} lg={1}>
-			                <OverlayTrigger trigger="click" placement="left" overlay={popover}>
-			                  <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
-			                </OverlayTrigger>
-			 
-			                <OverlayTrigger  trigger="click" placement="left" overlay={popover}>
-			                  <Button className="dashPop btn-info" variant="success" id="extraBtn">Dashboard</Button>
-			                </OverlayTrigger>
-						</Col>
-						<Col xs={0} md={0} lg={1}>
+
+						<Col xs={0} md={2} lg={2}>
+              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
+              </OverlayTrigger>
+
+              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                <Button className="dashPop btn-info" variant="success" id="extraBtn">Dashboard</Button>
+              </OverlayTrigger>
 						</Col>
 					</Row>
 
-					<div className= "modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div className= "modal-dialog">
+					<div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div className="modal-dialog">
 						<div className="modal-content">
 						<div className="modal-header">
 							<button type="button" className="close" data-dismiss="modal" onClick={this.unloadCurCourse} aria-hidden="true">&times;</button>
 						</div>
-						<div className="modal-body">
+						<div className="modal-body custom-modal">
 							<Row>
 								<Col xs={8}>
 								  <Card className="classCard" bg="light" text="#383838">
@@ -703,7 +678,7 @@ render(){
 															</tr>
 															<tr>
 																<td className="rowTitle">Instructor:</td>
-																<td id="instructor">Prof.</td>
+																<td id="instructor">{this.state.cur_course.name}</td>
 															</tr>
 															<tr>       
 																<td className="rowTitle">Description:</td>
@@ -718,14 +693,14 @@ render(){
 												<div id="flag">
 													<span id="flagtext">Course Rating</span> <br /><p id="courseScore">{this.state.cur_course.score}</p>
 												</div>
-												<Rate allowHalf defaultValue={2.5}/>
+												<Rate allowHalf defaultValue={2.5} />
 											</Col>
 										</Row>
 										<Row>
 											<div className="cardButtonMod">
-												<Button id="selectMod"  variant="success">Add to Schedule</Button>
-												<Button id="wishlistMod"  variant="danger">Add to Wishlist</Button>
-												<Button id="syllabusMod"  variant="secondary">Syllabus</Button>
+												<Button id="select" variant="success">Add to Schedule</Button>
+												<Button id="wishlist" variant="danger">Add to Wishlist</Button>
+												<Button id="syllabus" variant="secondary">Syllabus</Button>
 											</div>
 										</Row>
 									</Card.Body>
@@ -751,14 +726,19 @@ render(){
 										</div>
 									</div>
 								</div>
-	   
 
 								</Col>
 								<Col xs={4}>
 								   <div className="card">
 									   <div className="card-body text-center pb-2">
-										   <p><img className="rounded-circle portrait" src="http://nicesnippets.com/demo/profile-2.png" width="100%" height="auto" /></p>
-										   <h5 className="profCard-title"><strong>Nike Tyson</strong></h5>
+										   <p>
+                         <img
+                          alt="profile"
+                          className="portrait"
+                          src="http://nicesnippets.com/demo/profile-2.png"
+                          />
+                        </p>
+										   <h5 className="profCard-title"><strong>{this.state.cur_course.name}</strong></h5>
 										   <p className="profCard-text">This is basic user profile with image, title, detail and button.</p>
 									   </div>
 								   </div>
