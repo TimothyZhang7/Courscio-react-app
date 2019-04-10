@@ -28,12 +28,12 @@ class MainBoard extends Component{
 	}
 
 	componentDidMount() {
-		window.gapi.signin2.render('g-signin2', {
-    	'width': 120,
-    	'height': 30,
-    	'longtitle': true,
-    	'onsuccess': this.onSignIn
-    });
+		// window.gapi.signin2.render('g-signin2', {
+    // 	'width': 120,
+    // 	'height': 30,
+    // 	'longtitle': true,
+    // 	'onsuccess': this.onSignIn
+    // });
 	}
 
   onSignIn(googleUser) {
