@@ -38,6 +38,7 @@ class MainBoard extends Component{
 	     	'longtitle': true,
 	     	'onsuccess': this.onSignIn
 	     	});
+	     	console.log('button rendered')
 		}catch{
 			console.log('gpi-initialization failed')
 		}
@@ -156,11 +157,7 @@ class MainBoard extends Component{
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
               <span><div
-                id='g-signin2'
-                className="g-signin2 gButton"
-                data-onsuccess={this.onSignIn}
-                data-width="120"
-                data-height="30" /></span>
+                id='g-signin2' /></span>
             </div>
           </div>
         </nav>  
