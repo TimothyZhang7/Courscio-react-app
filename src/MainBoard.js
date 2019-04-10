@@ -6,7 +6,7 @@ import axios from 'axios';
 import App from './App';
 import Search from './Search';
 
-const API = '/api/v1/course/keyword?'
+const API = '/v1/'
 
 class MainBoard extends Component{
 	constructor(){
@@ -20,6 +20,8 @@ class MainBoard extends Component{
 			isExist: true,
 			search: "NONE",
 			response: "",
+			login: false,
+			uid: -1
 		}
 		this.handle_search = this.handle_search.bind(this)
 		this.doSearch = this.doSearch.bind(this)
@@ -30,28 +32,34 @@ class MainBoard extends Component{
 	}
 
 	componentDidMount() {
-		this.initGapi();
-		try{
-			window.gapi.signin2.render('g-signin2', {
-	     	'width': 120,
-	     	'height': 30,
-	     	'longtitle': true,
-	     	'onsuccess': this.onSignIn
-	     	});
-	     	console.log('button rendered')
-		}catch{
-			console.log('gpi-initialization failed')
-		}
+		this.initGapi()
 	}
 
-	onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  var id_token = googleUser.getAuthResponse().id_token;
-	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  console.log('Name: ' + profile.getName());
-	  console.log('Image URL: ' + profile.getImageUrl());
-	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	  console.log(id_token)
+	async onSignIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		var id_token = googleUser.getAuthResponse().id_token;
+		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+		console.log('Name: ' + profile.getName());
+		console.log('Image URL: ' + profile.getImageUrl());
+		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		console.log(id_token)
+
+		axios.post('/auth', {
+			email: profile.getEmail(),
+			token: id_token
+		})
+		.then(function (response) {
+			this.setState({
+				login: true,
+				uid: response
+			})
+			console.log(response)
+		})
+		.catch(function (error) {
+			console.log(error)
+		})
+
+		
 	}
 
 	initGapi(){
@@ -68,6 +76,17 @@ class MainBoard extends Component{
 		console.log(script);
 		if (script.getAttribute('gapi_processed')){
 			console.log('gapi initialized');
+			try{
+				window.gapi.signin2.render('g-signin2', {
+		     	'width': 120,
+		     	'height': 30,
+		     	'longtitle': true,
+		     	'onsuccess': this.onSignIn
+		     	});
+		     	console.log('button rendered')
+			}catch{
+				console.log('gpi-initialization failed')
+			}
 		}else{
 			console.log('try again in 100ms');
 			setTimeout(()=> {this.waitforGapi(script)},100);
@@ -109,7 +128,7 @@ class MainBoard extends Component{
 	async doSearch(keyword){
 //		try{
 			
-			let query = 'keyword=' + encodeURIComponent(keyword)
+			let query = 'course/keyword?keyword=' + encodeURIComponent(keyword)
 			console.log(query)
 			const response = await axios.get(API + query)
 			console.log("wait over")
@@ -163,7 +182,7 @@ class MainBoard extends Component{
         </nav>  
 
         <div id="root" className="fullroot"></div>
-			  <App response = {this.state.response} keyword = {this.state.search} />
+			  <App response = {this.state.response} keyword = {this.state.search} login = {this.state.login} uid = {this.state.uid}/>
 			</div>
 		)   
 	}

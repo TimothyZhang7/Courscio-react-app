@@ -23,7 +23,7 @@ class App extends Component {
 		this.state = {
 			token: "",
 			auth: "",
-			uid: 6,
+			uid: -1,
 			courses: [],
 			resultPrompt: "",
 			courses_raw_data: [], //RenderedHtml, start_t, end_t, course_obj, weekdays
@@ -63,7 +63,7 @@ class App extends Component {
 	}
 
 	async load_schedule() {
-		if (this.state.uid == -1){
+		if (this.state.uid === -1){
 			this.setState({
 				schedule: noUserDashboard
 			});
@@ -73,7 +73,7 @@ class App extends Component {
 	}
 
 	async load_dashboard() {
-		if (this.state.uid == -1){
+		if (this.state.uid === -1){
 			this.setState({
 				dashboard: noUserDashboard
 			});
@@ -87,7 +87,7 @@ class App extends Component {
 			isLoading: true
 		});
 
-		console.log("TO ROWS")
+		console.log("uid: "+this.state.uid)
 		try {
 			var courseRows = []
 			var courseRows_raw = []
@@ -117,6 +117,11 @@ class App extends Component {
 		var courses = this.raw_data_extract(this.weekday_filter(this.dept_filter(raw_data, this.state.dept), this.state.weekdays));
 		console.log(raw_data)
 		console.log(courses)
+		if (nextProps.login){
+			this.setState({
+				uid: nextProps.uid,
+			})
+		}
 		this.setState({
 			isAdvancedSearch: false,
 			courses_raw_data: raw_data,
@@ -498,17 +503,8 @@ render(){
 			100: '8pm+'
 		};
 
-		const showMe = this.state.showMe;
-		var v;
-		let button;
+		var v = 'visible';
 
-		if (showMe){
-      v = "visible";
-      console.log('vis')
-    } else{
-      v= "notVisible";
-      console.log('not')
-    }
 		return (
 			<div className="App">
 				<div className="container-fluid mx-2">
