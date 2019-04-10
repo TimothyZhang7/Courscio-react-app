@@ -25,26 +25,53 @@ class MainBoard extends Component{
 		this.doSearch = this.doSearch.bind(this)
 		this.onSignIn = this.onSignIn.bind(this)
 		this.translate_weekday = this.translate_weekday.bind(this)
+		this.initGapi = this.initGapi.bind(this)
+		this.waitforGapi = this.waitforGapi.bind(this)
 	}
 
 	componentDidMount() {
-		// window.gapi.signin2.render('g-signin2', {
-    // 	'width': 120,
-    // 	'height': 30,
-    // 	'longtitle': true,
-    // 	'onsuccess': this.onSignIn
-    // });
+		this.initGapi();
+		try{
+			window.gapi.signin2.render('g-signin2', {
+	     	'width': 120,
+	     	'height': 30,
+	     	'longtitle': true,
+	     	'onsuccess': this.onSignIn
+	     	});
+		}catch{
+			console.log('gpi-initialization failed')
+		}
 	}
 
-  onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    console.log(id_token)
-  }
+	onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  var id_token = googleUser.getAuthResponse().id_token;
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	  console.log(id_token)
+	}
+
+	initGapi(){
+		console.log('Initializing gapi');
+		const script = document.createElement('script');
+		script.onload = () => {
+			this.waitforGapi(script);
+		}
+		script.src = "https://apis.google.com/js/platform.js";
+		document.body.appendChild(script);
+	}
+
+	waitforGapi(script) {
+		console.log(script);
+		if (script.getAttribute('gapi_processed')){
+			console.log('gapi initialized');
+		}else{
+			console.log('try again in 100ms');
+			setTimeout(()=> {this.waitforGapi(script)},100);
+		}
+	}
 
 	handle_search (search_val) {
 		this.setState({

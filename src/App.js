@@ -12,6 +12,10 @@ major: "None", name: "null", prerequisite: "No prerequisite",
 schoolId: -1, score: 0, semester: "Fall 2019", 
 start_t:"0000", title: "System Error", weekday: "NO"};
 
+const noUserDashboard = (<Popover id="popover-basic" title="Popover right">
+				And here's some <strong>amazing</strong> content. It's very engaging. right?
+			</Popover>);
+
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -33,7 +37,9 @@ class App extends Component {
 			slider_val: [800,2400],
 			cur_course: noCourse,
 			comment: "",
-			comments: []
+			comments: [],
+			schedule: noUserDashboard,
+			dashboard: noUserDashboard
 		}
 
 		this.ReMount = this.ReMount.bind(this)
@@ -56,11 +62,26 @@ class App extends Component {
 		this.renderCardList = this.renderCardList.bind(this)
 	}
 
-	clicked(){
-    this.setState({
-      showMe : ! this.state.showMe
-    })
+	async load_schedule() {
+		if (this.state.uid == -1){
+			this.setState({
+				schedule: noUserDashboard
+			});
+		}else{
+
+		}
 	}
+
+	async load_dashboard() {
+		if (this.state.uid == -1){
+			this.setState({
+				dashboard: noUserDashboard
+			});
+		}else{
+			
+		}
+	}
+
 	async componentDidMount() {
 		this.setState({
 			isLoading: true
@@ -477,12 +498,6 @@ render(){
 			100: '8pm+'
 		};
 
-		const popover = (
-			<Popover id="popover-basic" title="Popover right">
-				And here's some <strong>amazing</strong> content. It's very engaging. right?
-			</Popover>
-		);
-
 		const showMe = this.state.showMe;
 		var v;
 		let button;
@@ -640,11 +655,11 @@ render(){
 						</Col>
 
 						<Col xs={0} md={2} lg={2}>
-              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+              <OverlayTrigger trigger="click" placement="left" overlay={this.state.schedule}>
                 <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
               </OverlayTrigger>
 
-              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+              <OverlayTrigger trigger="click" placement="left" overlay={this.state.dashboard}>
                 <Button className="dashPop btn-info" variant="success" id="extraBtn">Dashboard</Button>
               </OverlayTrigger>
 						</Col>
