@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import {Card, Row, Col, Form, Button, ButtonToolbar, ToggleButton, ToggleButtonGroup, Popover, OverlayTrigger} from 'react-bootstrap';
+import { Card,
+  Row,
+  Col,
+  Form,
+  Button,
+  ButtonToolbar,
+  ToggleButton,
+  ToggleButtonGroup,
+  Popover,
+  OverlayTrigger } from 'react-bootstrap';
 import {Slider, Rate} from 'antd';
 import axios from 'axios';
 import './App.css';
@@ -71,9 +80,9 @@ class App extends Component {
 			var courseRows = []
 			var courseRows_raw = []
 			const courseRow = <Card className="noCourse-card" text="black" key="0">
-					<Card.Body>
+					{/* <Card.Body>
 						<Card.Title>Use the filter or search box to find courses</Card.Title>
-					</Card.Body>
+					</Card.Body> */}
 					<img className="card-img-bottom" src="comics/noCourse.png" alt="noCourse" />
 					<br />
 				</Card>
@@ -156,36 +165,40 @@ class App extends Component {
 			const courseRow = <Card className="classCard" bg="light" text="#383838" key={cur_course.key}>
 			  <Card.Body>
 			  <Row>
-				  <Col tag="a" className="card_padding" data-toggle="modal" id={cur_course.id} data-target="#myModal" onClick={this.recordPopUpInfo} style={{ cursor: "pointer"}} xs={9}>
-					<Card.Title>{cur_course.cname}&nbsp;&nbsp;{cur_course.title}</Card.Title>
-					<Card.Subtitle>CRN&nbsp;{cur_course.crn}&nbsp;&nbsp;{cur_course.credit}&nbsp;Credits</Card.Subtitle>
-					<div className="card-text">
-					  <table>
-						<tbody>     
-							<tr>
-								<td className="rowTitle">Time:</td>
-								<td id="time">{weekdayRow}&nbsp;{cur_course.start_t}-{cur_course.end_t}</td>
-							</tr>
-							<tr>
-								<td className="rowTitle">Location: </td>
-								<td>{cur_course.location}</td>
-							</tr>
-							<tr>
-								<td className="rowTitle">Instructor:</td>
-								<td id="instructor">{cur_course.name}</td>
-							</tr>
-							<tr>       
-								<td className="rowTitle">Description:</td>
-								<td>{cur_course.description}</td>
-						  </tr>
-					  </tbody>
-					  </table>
-					</div>
+				  <Col
+            tag="a"
+            className="card_padding"
+            data-toggle="modal"
+            id={cur_course.id}
+            data-target="#myModal"
+            onClick={this.recordPopUpInfo}
+            style={{ cursor: "pointer"}}
+            xs={10}>
+            <Card.Title>
+              CRN - {cur_course.crn}&nbsp;
+              {cur_course.cname}&nbsp;&nbsp;
+              {cur_course.title}&nbsp;&nbsp;
+              {cur_course.credit}&nbsp;Credits
+            </Card.Title>
+            {/* <Card.Subtitle>CRN&nbsp;{cur_course.crn}&nbsp;&nbsp;{cur_course.credit}&nbsp;Credits</Card.Subtitle> */}
+            <div className="card-text">
+              <div className="card-text__row">
+                <p className="rowTitle">Description:</p>
+                <p className="text-margin">{cur_course.description.substring(0, 200)} <a href="/">...more</a></p>
+              </div>
+              <div className="card-text__row">
+              <p className="rowTitle text-margin">Instructor:</p>
+                  <p id="instructor">{cur_course.name}</p>
+                  <p className="rowTitle text-margin">Time:</p>
+                  <p id="time">{weekdayRow}&nbsp;{cur_course.start_t}-{cur_course.end_t}</p>
+                  <p className="rowTitle text-margin">Location: </p>
+                  <p>{cur_course.location}</p>
+              </div>
+            </div>
 					</Col>
-					<Col xs={3} id="flagdiv">
-						<div id="flag">
-							<span id="flagtext">Course Rating</span> <br /><p id="courseScore">{cur_course.score}</p>
-						</div>
+					<Col xs={2} className="rating-section align-middle">
+            <div className="rating">{cur_course.score}</div>
+            <div className="rating__subtitle">Overall Rating</div>
 					</Col>
 				</Row>
           <Row>
@@ -440,6 +453,11 @@ class App extends Component {
 		for (var i= 0; i< comments_raw.length; i++){
 			const commentrow = (
 				<li className="media" key={i}>
+          <img
+            alt="profile"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+            className="comment-profile"
+            />
           <div className="media-body shadow-sm p-3 mb-2 bg-white rounded">
 						<p>
 							{comments_raw[i].comment}
@@ -481,6 +499,33 @@ render(){
 			<Popover id="popover-basic" title="Popover right">
 				And here's some <strong>amazing</strong> content. It's very engaging. right?
 			</Popover>
+    );
+    
+    const dashboard = (
+			<Popover id="popover-basic" title="Dashboard">
+				<div>Courses In Schedule:</div>
+        <div className="schedule-course">
+          &bull;  PHL 101
+          <div className="remove">X</div>
+          <div className="send-down">d</div>
+        </div>
+        <div className="schedule-course">
+          &bull;  CSC 101
+          <div className="remove">X</div>
+          <div className="send-down">d</div>
+        </div>
+        <div>Bookmarked Courses:</div>
+        <div className="schedule-course">
+          &bull;  PHL 101
+          <div className="remove">X</div>
+          <div className="send-down">^</div>
+        </div>
+        <div className="schedule-course">
+          &bull;  CSC 101
+          <div className="remove">X</div>
+          <div className="send-down">^</div>
+        </div>
+			</Popover>
 		);
 
 		const showMe = this.state.showMe;
@@ -498,9 +543,9 @@ render(){
 			<div className="App">
 				<div className="container-fluid mx-2">
 					<Row>
-						<Col className="filterLarge" md={3} lg={3}>
+						<Col className="" md={3} lg={3}>
               <div className="filterLarge">
-                <span id="filterWord">Filter</span>
+                Advanced Research
               </div>
 							<div container="true" className="filtersmall">
                 <div id = {v}>
@@ -618,6 +663,7 @@ render(){
 										</Form.Control>
 
                     <div className="sliderbox">
+                      <p>Time Period</p>
                       <Slider range marks={marks} step={null} tooltipVisible={false} defaultValue={[0,100]} onAfterChange={this.onSliderChange}/>
                     </div>
 
@@ -639,15 +685,15 @@ render(){
 							{this.state.courses}
 						</Col>
 
-						<Col xs={0} md={2} lg={2}>
+						<div className="col-xs-0 col-md-2 col-lg-2">
               <OverlayTrigger trigger="click" placement="left" overlay={popover}>
                 <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
               </OverlayTrigger>
 
-              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+              <OverlayTrigger trigger="click" placement="left" overlay={dashboard}>
                 <Button className="dashPop btn-info" variant="success" id="extraBtn">Dashboard</Button>
               </OverlayTrigger>
-						</Col>
+						</div>
 					</Row>
 
 					<div className="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -662,40 +708,44 @@ render(){
 								  <Card className="classCard" bg="light" text="#383838">
 									<Card.Body>
 										<Row>
-											<Col xs={9} id="courseInfo">
-												<Card.Title>{this.state.cur_course.cname}&nbsp;&nbsp;{this.state.cur_course.title}</Card.Title>
-												<Card.Subtitle>CRN&nbsp;{this.state.cur_course.crn}&nbsp;&nbsp;{this.state.cur_course.credit}&nbsp;Credits</Card.Subtitle>
-												<div className="card-text">
-													<table>
-														<tbody>     
-															<tr>
-																<td className="rowTitle">Time:</td>
-																<td id="time">{this.state.cur_course.weekday} {this.state.cur_course.start_t}-{this.state.cur_course.end_t}</td>
-															</tr>
-															<tr>
-																<td className="rowTitle">Location: </td>
-																<td>{this.state.cur_course.location}</td>
-															</tr>
-															<tr>
-																<td className="rowTitle">Instructor:</td>
-																<td id="instructor">{this.state.cur_course.name}</td>
-															</tr>
-															<tr>       
-																<td className="rowTitle">Description:</td>
-																<td>{this.state.cur_course.description}</td>
-														  </tr>
-														</tbody>
-													 </table>
-												</div>
-											</Col>
-
-											<Col xs={3} id="flagdiv">
-												<div id="flag">
-													<span id="flagtext">Course Rating</span> <br /><p id="courseScore">{this.state.cur_course.score}</p>
-												</div>
-												<Rate allowHalf defaultValue={2.5} />
-											</Col>
-										</Row>
+                      <Col
+                        tag="a"
+                        className="card_padding"
+                        data-toggle="modal"
+                        id={this.state.cur_course.id}
+                        data-target="#myModal"
+                        onClick={this.recordPopUpInfo}
+                        style={{ cursor: "pointer"}}
+                        xs={10}>
+                        <Card.Title>
+                          CRN - {this.state.cur_course.crn}&nbsp;
+                          {this.state.cur_course.cname}&nbsp;&nbsp;
+                          {this.state.cur_course.title}&nbsp;&nbsp;
+                          {this.state.cur_course.credit}&nbsp;Credits
+                        </Card.Title>
+                        {/* <Card.Subtitle>CRN&nbsp;{cur_course.crn}&nbsp;&nbsp;{cur_course.credit}&nbsp;Credits</Card.Subtitle> */}
+                        <div className="card-text">
+                          <div className="card-text__row">
+                            <p className="rowTitle">Description:</p>
+                            <p className="text-margin">{this.state.cur_course.description.substring(0, 200)} <a href="/">...more</a></p>
+                          </div>
+                          <div className="card-text__row">
+                          <p className="rowTitle text-margin">Instructor:</p>
+                              <p id="instructor">{this.state.cur_course.name}</p>
+                              <p className="rowTitle text-margin">Time:</p>
+                              <p id="time">{this.state.cur_course.weekday}&nbsp;{this.state.cur_course.start_t}-{this.state.cur_course.end_t}</p>
+                              <p className="rowTitle text-margin">Location: </p>
+                              <p>{this.state.cur_course.location}</p>
+                          </div>
+                        </div>
+                      </Col>
+                      <Col xs={2} className="rating-section align-middle">
+                        <div className="rating">{this.state.cur_course.score}</div>
+                        <div className="rating__subtitle">Overall Rating</div>
+                        <div className="rating__subtitle--sub">(30 peers rated)</div>
+                        <button className="btn btn-info">Rate</button>
+                      </Col>
+                    </Row>
 										<Row>
 											<div className="cardButtonMod">
 												<Button id="select" variant="success">Add to Schedule</Button>
@@ -713,7 +763,13 @@ render(){
 											<div className= "panel-heading"></div>
 											<div className="panel panel-info">
 												<div className="panel-body">
-													<textarea className="form-control" value= {this.state.comment} onChange={this.commentChange} placeholder="Write a comment..." rows="3"></textarea>
+													<textarea
+                            className="form-control"
+                            value= {this.state.comment}
+                            onChange={this.commentChange}
+                            placeholder="Write a comment..."
+                            rows="3">
+                          </textarea>
 													<br />
 													<button type="button" className="btn btn-info pull-right" onClick={this.submitComment}>Post</button>
 													<div className="clearfix"></div>
@@ -735,11 +791,20 @@ render(){
                          <img
                           alt="profile"
                           className="portrait"
-                          src="http://nicesnippets.com/demo/profile-2.png"
+                          src="http://exercisebliss.com/wp-content/themes/bliss-blank3/img/profile-square.jpg"
                           />
                         </p>
-										   <h5 className="profCard-title"><strong>{this.state.cur_course.name}</strong></h5>
-										   <p className="profCard-text">This is basic user profile with image, title, detail and button.</p>
+										   <h5 className="prof__name">{this.state.cur_course.name}</h5>
+                       <div className="rating">504</div>
+										   <p className="">Citations</p>
+                       <p className="prof__subtext"><b>PhD, Cornell University, 2004</b></p>
+                       <p className="prof__subtext"><b>Research Interests:</b></p>
+                       <p className="prof__subtext"> 
+                        Economics of Education, Labor Economics, 
+                        Applied Econometrics,Environmental Economics, 
+                        Public Economics
+                      </p>
+                      <button className="btn btn-secondary">Personal Website</button>
 									   </div>
 								   </div>
 								</Col>

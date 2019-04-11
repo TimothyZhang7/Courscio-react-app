@@ -4,11 +4,7 @@ html, body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	overflow: auto;
-}
-
-.row {
-	margin-top: 300px 0;
+	overflow-x: hidden;
 }
 
 nav {
@@ -39,6 +35,11 @@ nav {
 	padding-left: 0px;
 }
 
+#header {
+  color: #383838;
+  font-size: 3em;
+}
+
 .container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
 	padding-left: 0px;
 	padding-right: 0px;
@@ -56,10 +57,6 @@ nav {
 	height: 4.3em;
 }
 
-.navbar {
-	border-bottom: 1px solid lightgray;
-}
-
 .btn-light {
 	background-color: transparent !important;
 	border-color: #ced4da;
@@ -70,18 +67,17 @@ nav {
 	margin-left: 0px;
 }
 
-#findCourse{
+#findCourse {
 	text-align: right;
 }
 
-.btn-danger{
+.btn-danger {
 	width: 100%;
-	height: 70%;
-	margin-top: 8%;
+	height: 75%;
+  margin-top: 8%;
 	background-color: #E25A64 !important;
-	border-color:  #E25A64 !important;
-	box-shadow: 5px 8px 8px lightgrey;
-	font-size: 22px;
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 h1 {
@@ -94,8 +90,9 @@ h2 {
 }
 
 p {
-	font-size: 16px;
-	line-height: 1.4;
+  font-size: 1.4em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+	line-height: 1.6;
 }
 
 #bannerCard {
@@ -135,13 +132,13 @@ p {
 	height: auto;
 }
 
-#about_text {
-	padding-left: 1em;
+.top-buffer .image-fluid {
+	height: auto;
 }
 
-.top-buffer .image-fluid {
-	width: 250%;
-	height: auto;
+#about-desc {
+  font-size: 3em;
+  font-weight: bold;
 }
 
 .box15{

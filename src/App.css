@@ -12,7 +12,7 @@
 
 .formGroup {
   text-align: left;
-  height: 3.5em;
+  height: 4em;
 }
 
 .portrait {
@@ -30,10 +30,11 @@
   text-align: middle;
 }
 
-#filterWord {
+.filterLarge {
   font-family: "Helvetica Neue", Helvetica;
   font-weight: 600;
   font-size: 1.5em;
+  margin: 8px 0;
   color: #3f444c;
 }
 
@@ -41,7 +42,7 @@
   font-family: "Open Sans",sans-serif;
   font-size: 1em;
   color: gray;
-  height: 3em;
+  height: 3.5em;
 }
 
 option {
@@ -58,7 +59,7 @@ option {
 }
 
 #weekBar {
-  padding-left: 10px;
+  font-size: 1.7em;
 }
 
 .btn-group-toggle, .btn-toolbar {
@@ -75,9 +76,9 @@ option {
 }
 
 .card-img-bottom {
-  width: 60% !important;
+  width: 40% !important;
   height: auto;
-  margin: auto;
+  margin: 250px auto;
 }
 
 
@@ -106,6 +107,43 @@ option {
   height: 44px;
   font-weight: bold;
   margin: 18px 0;
+}
+
+.schedule-course {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.remove, .send-up, .send-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E25A64;
+  width: 28px;
+  height: 30px;
+  margin: 6px;
+  border: solid 1px #555;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+}
+
+.bullet {
+  min-width: 100px;
+}
+
+.send-up, .send-down {
+  background: #31906F;
+}
+
+.comment-profile {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin: 0 8px;
 }
 
 .card {
@@ -141,12 +179,17 @@ td {
 
 .rowTitle{
   font-weight: bold;
-  text-align: right;
-  padding-right: 8px;
+  margin: 0;
 }
 
-table {
-  margin-bottom: 8px;
+.card-text__row {
+  display: flex;
+  flex-direction: row;
+  margin: 8px 0;
+}
+
+.text-margin {
+  margin: 0 8px;
 }
 
 #wishlist {
@@ -181,59 +224,39 @@ table {
   justify-content: flex-end;
 }
 
+.prof__name {
+
+}
+
+.prof__subtext {
+  text-align: left;
+  width: 80%;
+  margin: 0 24px;
+}
+
 #courseInfo {
   margin-top: 20px;
 }
 
-#flag {
-  width: 80px;
-  height: 120px;
-  margin-left: 25px;
-  box-sizing: content-box;
-  position: relative;
-  background: skyblue;
-  color: white;
-  font-size: 36px;
+.rating-section {
+  padding-top: 32px;
   text-align: center;
-  text-align: top;
-  top: -2px;
 }
 
-#flag:after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 0;
-  height: 0;
-  border-bottom: 32px solid white;
-  border-left: 40px solid transparent;
-  border-right: 40px solid transparent;
+.rating {
+  font-size: 3em;
+  color: #7EA4DE;
+  font-weight: 700;
 }
 
-#flagdiv {
-  margin-top: 0px;
-  padding-top: 0px;
+.rating__subtitle {
+  font-size: 1em;
+  color: #707070;
+  font-weight: 600;
 }
 
-#flagtext {
-  position: relative;
-  font-size: 12px;
-  color: white;
-  display: inline-block;
-  padding-left: 1.5px;
-  top: -10px;
-  font-weight: bold;
-}
-
-#courseScore {
-  position: relative;
-  top: -20px;
-  font-weight: bold;
-}
-
-#overallRating {
-  font-size: 12px;
+.rating__subtitle-sub {
+  font-size: .7em;
 }
 
 .flip-main {
@@ -286,6 +309,10 @@ table {
 
 .panel-body {
   width: 100%;
+}
+
+.media-list {
+  padding: 0;
 }
 
 .btn-info {
