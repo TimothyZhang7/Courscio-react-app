@@ -8,20 +8,18 @@ import Search from './Search';
 
 const API = '/v1/'
 
+const querystring = require('query-string');
+
 class MainBoard extends Component{
 	constructor(){
 		super()
-		const noCourse = {cname: "Error", credit: 0, crn: "00000", description: "Contact Enginner",
-		end_t: "2400", id:-1, key: "-1MON", location: "None", 
-		major: "None", name: "null", prerequisite: "No prerequisite", 
-		schoolId: -1, score: 0, semester: "Fall 2019", 
-		start_t:"0000", title: "System Error", weekday: "NO"};
 		this.state = {
 			isExist: true,
 			search: "NONE",
 			response: "",
 			login: false,
-			uid: -1
+			uid: -1,
+			auth: ""
 		}
 		this.handle_search = this.handle_search.bind(this)
 		this.doSearch = this.doSearch.bind(this)
@@ -38,25 +36,24 @@ class MainBoard extends Component{
 	async onSignIn(googleUser) {
 		var profile = googleUser.getBasicProfile();
 		var id_token = googleUser.getAuthResponse().id_token;
-		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-		console.log('Name: ' + profile.getName());
-		console.log('Image URL: ' + profile.getImageUrl());
-		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+//		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//		console.log('Name: ' + profile.getName());
+//		console.log('Image URL: ' + profile.getImageUrl());
+//		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 		console.log(id_token)
 
-		axios.post('/auth', {
+		var responsebody = await axios.post(API+'auth', querystring.stringify({
 			email: profile.getEmail(),
 			token: id_token
-		})
-		.then(function (response) {
-			this.setState({
-				login: true,
-				uid: response
-			})
-			console.log(response)
-		})
+		}))
 		.catch(function (error) {
 			console.log(error)
+		})
+		console.log(responsebody)
+		this.setState({
+			uid: responsebody.data.id,
+			login: true,
+			auth: responsebody.headers.authorization
 		})
 
 		
@@ -182,7 +179,9 @@ class MainBoard extends Component{
         </nav>  
 
         <div id="root" className="fullroot"></div>
-			  <App response = {this.state.response} keyword = {this.state.search} login = {this.state.login} uid = {this.state.uid}/>
+			  <App response = {this.state.response} keyword = {this.state.search} login = {this.state.login} uid = {this.state.uid}
+			  	auth = {this.state.auth}
+			  />
 			</div>
 		)   
 	}
