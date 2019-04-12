@@ -458,7 +458,7 @@ class App extends Component {
             src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
             className="comment-profile"
             />
-          <div className="media-body shadow-sm p-3 mb-2 bg-white rounded">
+          <div className="media-body shadow-sm p-3 mb-4 bg-white rounded">
 						<p>
 							{comments_raw[i].comment}
 						</p>
@@ -500,10 +500,16 @@ render(){
 				And here's some <strong>amazing</strong> content. It's very engaging. right?
 			</Popover>
     );
+
+    const rate = (
+      <Popover id="popover-basic" title="Rate">
+        <Slider tooltipVisible={false} defaultValue={0} onAfterChange={null}/>
+      </Popover>
+    );
     
     const dashboard = (
 			<Popover id="popover-basic" title="Dashboard">
-				<div>Courses In Schedule:</div>
+				<div className="dash-labels">Courses In Schedule:</div>
         <div className="schedule-course">
           &bull;  PHL 101
           <div className="remove">X</div>
@@ -514,7 +520,7 @@ render(){
           <div className="remove">X</div>
           <div className="send-down">d</div>
         </div>
-        <div>Bookmarked Courses:</div>
+        <div className="dash-labels my-2">Wishlist:</div>
         <div className="schedule-course">
           &bull;  PHL 101
           <div className="remove">X</div>
@@ -685,7 +691,7 @@ render(){
 							{this.state.courses}
 						</Col>
 
-						<div className="col-xs-0 col-md-2 col-lg-2">
+						<div className="col-xs-0 col-md-2 col-lg-2 popovers">
               <OverlayTrigger trigger="click" placement="left" overlay={popover}>
                 <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
               </OverlayTrigger>
@@ -743,7 +749,9 @@ render(){
                         <div className="rating">{this.state.cur_course.score}</div>
                         <div className="rating__subtitle">Overall Rating</div>
                         <div className="rating__subtitle--sub">(30 peers rated)</div>
-                        <button className="btn btn-info">Rate</button>
+                        <OverlayTrigger trigger="click" placement="left" overlay={rate}>
+                          <button className="btn btn-info">Rate</button>
+                        </OverlayTrigger>
                       </Col>
                     </Row>
 										<Row>
@@ -784,7 +792,7 @@ render(){
 								</div>
 
 								</Col>
-								<Col xs={4}>
+								<Col xs={3}>
 								   <div className="card">
 									   <div className="card-body text-center pb-2">
 										   <p>
@@ -804,7 +812,7 @@ render(){
                         Applied Econometrics,Environmental Economics, 
                         Public Economics
                       </p>
-                      <button className="btn btn-secondary">Personal Website</button>
+                      <button className="btn btn-secondary mx-2 my-2">Personal Website</button>
 									   </div>
 								   </div>
 								</Col>

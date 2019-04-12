@@ -95,7 +95,7 @@ option {
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .btn-group {
   background-color: transparent !important;
-  color: #91d5ff !important; 
+  color: #85A8DC !important; 
   border-color: transparent !important;
   box-shadow: none;
 }
@@ -139,11 +139,26 @@ option {
   background: #31906F;
 }
 
+#rate-popover {
+  width: 100px;
+}
+
+.popovers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .comment-profile {
   width: 45px;
   height: 45px;
   border-radius: 50%;
   margin: 0 8px;
+}
+
+.dash-labels {
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
 .card {
@@ -280,9 +295,9 @@ td {
 }
 
 .modal-dialog {
-  width: 100%;
+  width: 80%;
   height: 100%;
-  margin:0;
+  margin:0 auto;
   padding:0;
 }
 
@@ -313,6 +328,10 @@ td {
 
 .media-list {
   padding: 0;
+}
+
+.media-body {
+  border: solid 1px #707070;
 }
 
 .btn-info {
