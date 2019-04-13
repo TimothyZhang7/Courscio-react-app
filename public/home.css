@@ -71,15 +71,29 @@ nav {
 	text-align: right;
 }
 
+.btn {
+    width: 370px;
+    padding: 18px 0px 18px 0px;
+}
+
 .btn-danger {
-	width: 100%;
-	height: 75%;
-  margin-top: 8%;
-  background-color:#E38D93 !important;
-  border: solid 3px #E25A64;
-  font-size: 1.8em;
-  font-weight: bold;
-  border-radius: 0px;
+    /*width: 100%;*/
+    /*height: 75%;*/
+    margin-top: 8%;
+    background-color: #E38D93 !important;
+    border: solid 3px #E25A64;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.buttonExtraText {
+    text-align: right;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    padding-right: 0px;
+    margin-right: 0px;
 }
 
 .navbar-custom {
