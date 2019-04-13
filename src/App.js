@@ -883,7 +883,7 @@ render(){
                         <div className="rating__subtitle">Overall Rating</div>
                         <div className="rating__subtitle--sub">(30 peers rated)</div>
                         <OverlayTrigger trigger="click" placement="left" overlay={rate}>
-                          <button className="btn btn-info">Rate</button>
+                          <button id="rateButton" className="btn btn-info">RATE This Course</button>
                         </OverlayTrigger>
                       </Col>
                     </Row>
@@ -891,7 +891,7 @@ render(){
 											<div className="cardButtonMod">
 												<Button id="select" variant="success">Add to Schedule</Button>
 												<Button id="wishlist" variant="danger">Add to Wishlist</Button>
-												<Button id="syllabus" variant="secondary">Syllabus</Button>
+												<Button id="syllabus" variant="secondary">SYLLABUS</Button>
 											</div>
 										</Row>
 									</Card.Body>

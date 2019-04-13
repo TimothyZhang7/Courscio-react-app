@@ -129,6 +129,7 @@ p {
 
 .card-text {
 	font-size: 16px;
+    line-height: 95%;
 }
 
 .card-img-top {

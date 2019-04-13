@@ -208,24 +208,60 @@ td {
   margin: 0 8px;
 }
 
+.btn-sm {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
 #wishlist {
   background: #31906F;
 }
 
 #select {
-  background:#E25A64;
-  opacity: 63%;
+    background: #E25A64;
+    opacity: 63%;
+    /*padding: .25rem .5rem;
+    width: 13.2em;
+    font-size: .875rem;
+    line-height: 1.5;*/
+    /*border-radius: .2rem;*/
 }
 
 #syllabus {
-  background:#7EA4DE;
+    background: #7EA4DE;
+    margin: 0 12px;
+    font-weight: bold;
+    border: none;
+    min-height: 45px;
 }
 
+/*#select, #wishlist {
+    width: 11.2em;
+    font-size: .875rem;
+    line-height: 0.75;
+    margin: 0 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 0 0 0px;
+    min-height: 20px;
+    padding: 0 0 0 0em;
+}*/
+
 #select, #wishlist, #syllabus {
-  margin: 0 12px;
-  font-weight: bold;
-  border: none;
-  min-height: 45px;
+    margin: 0 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 0 0 0px;
+    min-height: 20px;
+    padding: 0 0 0 0em;
+    /*padding: .25rem .9rem;*/
+    /*padding: 0 0 0 0px;*/
+    width: 11.2em;
+    font-size: .875rem;
+    line-height: 0.75;
+    /*border-style: solid;*/
 }
 
 .custom-modal {
@@ -337,7 +373,24 @@ td {
 
 .btn-info {
   float: right;
+  /*width:5.5em;*/
 }
+
+#rateButton {
+    margin: 10px 0px;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 0 0 0px;
+    min-height: 25px;
+    padding: 0 0 0 0em;
+    /*padding: .25rem .9rem;*/
+    /*padding: 0 0 0 0px;*/
+    width: 8.2em;
+    font-size: .875rem;
+    line-height: 1;
+    /*border-style: solid;*/
+}
+
 
 @media only screen and (max-width:768px){
   #extraBtn {
