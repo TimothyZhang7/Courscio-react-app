@@ -6,45 +6,89 @@ import axios from 'axios';
 import App from './App';
 import Search from './Search';
 
-const API = '/api/v1/course/keyword?'
+const API = '/v1/'
+
+const querystring = require('query-string');
 
 class MainBoard extends Component{
 	constructor(){
 		super()
-		const noCourse = {cname: "Error", credit: 0, crn: "00000", description: "Contact Enginner",
-		end_t: "2400", id:-1, key: "-1MON", location: "None", 
-		major: "None", name: "null", prerequisite: "No prerequisite", 
-		schoolId: -1, score: 0, semester: "Fall 2019", 
-		start_t:"0000", title: "System Error", weekday: "NO"};
 		this.state = {
 			isExist: true,
 			search: "NONE",
 			response: "",
+			login: false,
+			uid: -1,
+			auth: ""
 		}
 		this.handle_search = this.handle_search.bind(this)
 		this.doSearch = this.doSearch.bind(this)
 		this.onSignIn = this.onSignIn.bind(this)
 		this.translate_weekday = this.translate_weekday.bind(this)
+		this.initGapi = this.initGapi.bind(this)
+		this.waitforGapi = this.waitforGapi.bind(this)
 	}
 
 	componentDidMount() {
-		// window.gapi.signin2.render('g-signin2', {
-    // 	'width': 120,
-    // 	'height': 30,
-    // 	'longtitle': true,
-    // 	'onsuccess': this.onSignIn
-    // });
+		this.initGapi()
 	}
 
-  onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    console.log(id_token)
-  }
+	async onSignIn(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		var id_token = googleUser.getAuthResponse().id_token;
+//		console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+//		console.log('Name: ' + profile.getName());
+//		console.log('Image URL: ' + profile.getImageUrl());
+//		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		console.log(id_token)
+
+		var responsebody = await axios.post(API+'auth', querystring.stringify({
+			email: profile.getEmail(),
+			token: id_token
+		}))
+		.catch(function (error) {
+			console.log(error)
+		})
+		console.log(responsebody)
+		this.setState({
+			uid: responsebody.data.id,
+			login: true,
+			auth: responsebody.headers.authorization
+		})
+
+		
+	}
+
+	initGapi(){
+		console.log('Initializing gapi');
+		const script = document.createElement('script');
+		script.onload = () => {
+			this.waitforGapi(script);
+		}
+		script.src = "https://apis.google.com/js/platform.js";
+		document.body.appendChild(script);
+	}
+
+	waitforGapi(script) {
+		console.log(script);
+		if (script.getAttribute('gapi_processed')){
+			console.log('gapi initialized');
+			try{
+				window.gapi.signin2.render('g-signin2', {
+		     	'width': 120,
+		     	'height': 30,
+		     	'longtitle': true,
+		     	'onsuccess': this.onSignIn
+		     	});
+		     	console.log('button rendered')
+			}catch{
+				console.log('gpi-initialization failed')
+			}
+		}else{
+			console.log('try again in 100ms');
+			setTimeout(()=> {this.waitforGapi(script)},100);
+		}
+	}
 
 	handle_search (search_val) {
 		this.setState({
@@ -81,7 +125,7 @@ class MainBoard extends Component{
 	async doSearch(keyword){
 //		try{
 			
-			let query = 'keyword=' + encodeURIComponent(keyword)
+			let query = 'course/keyword?keyword=' + encodeURIComponent(keyword)
 			console.log(query)
 			const response = await axios.get(API + query)
 			console.log("wait over")
@@ -128,18 +172,17 @@ class MainBoard extends Component{
               <a className="nav-item" href="/">Home</a>
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
-              {/* <div
-                id='g-signin2'
-                className="g-signin2 gButton"
-                data-onsuccess={this.onSignIn}
-                data-width="120"
-                data-height="30" /> */}
+
+              <span><div
+                id='g-signin2' /></span>
             </div>
           </div>
         </nav>  
 
         <div id="root" className="fullroot"></div>
-			  <App response = {this.state.response} keyword = {this.state.search} />
+			  <App response = {this.state.response} keyword = {this.state.search} login = {this.state.login} uid = {this.state.uid}
+			  	auth = {this.state.auth}
+			  />
 			</div>
 		)   
 	}

@@ -15,11 +15,17 @@ import './App.css';
 
 const API = '/v1/';
 
+const querystring = require('query-string');
+
 const noCourse = {cname: "Error", credit: 0, crn: "00000", description: "Contact Enginner",
 end_t: "2400", id:-1, key: "-1MON", location: "None", 
 major: "None", name: "null", prerequisite: "No prerequisite", 
 schoolId: -1, score: 0, semester: "Fall 2019", 
 start_t:"0000", title: "System Error", weekday: "NO"};
+
+const noUserDashboard = (<Popover id="popover-basic" title="Please login">
+				Please <strong>login</strong>
+			</Popover>);
 
 class App extends Component {
 	constructor(props) {
@@ -27,8 +33,8 @@ class App extends Component {
 
 		this.state = {
 			token: "",
-			auth: "",
-			uid: 6,
+			auth: "Bearer ",
+			uid: -1,
 			courses: [],
 			resultPrompt: "",
 			courses_raw_data: [], //RenderedHtml, start_t, end_t, course_obj, weekdays
@@ -42,7 +48,12 @@ class App extends Component {
 			slider_val: [800,2400],
 			cur_course: noCourse,
 			comment: "",
-			comments: []
+			comments: [],
+			schedule: noUserDashboard,
+			dashboard: noUserDashboard,
+			userCart: [],
+			scheduleOn: false,
+			dashboardOn: false
 		}
 
 		this.ReMount = this.ReMount.bind(this)
@@ -63,19 +74,141 @@ class App extends Component {
 		this.onDestroySearchResult = this.onDestroySearchResult.bind(this)
 		this.onDateDeptChange = this.onDateDeptChange.bind(this)
 		this.renderCardList = this.renderCardList.bind(this)
+		this.load_schedule = this.load_schedule.bind(this)
+		this.load_dashboard = this.load_dashboard.bind(this)
+		this.getUserSelections = this.getUserSelections.bind(this)
+		this.post_to_cart = this.post_to_cart.bind(this)
+		this.filter_cart = this.filter_cart.bind(this)
+		this.create_dashboard_with_filtered_cart = this.create_dashboard_with_filtered_cart.bind(this)
 	}
 
-	clicked(){
-    this.setState({
-      showMe : ! this.state.showMe
-    })
+	async post_to_cart(e){
+		
+		var cid = e.target.value
+		var type = 'reserved'
+		if (e.target.id === 'wishlist'){
+			type = 'wishlist'
+		}
+		console.log(cid)
+		console.log(type)
+
+		if (this.state.uid === -1){
+			console.log('not logged in')
+		}else{
+			var query = 'user/'+String(this.state.uid)+'/cart'
+			var qs = querystring.stringify()
+			console.log(this.state.auth)
+			var response = await axios.post(API + query,
+				{courseId: cid,
+					userId: this.state.uid,
+					type: type
+				},
+				{headers: {
+					'Authorization' : this.state.auth
+				}})
+			.catch(function (error){
+				console.log(error)
+			})
+			console.log(response)
+		}
 	}
+
+	async load_schedule() {
+		if (this.state.uid === -1){
+			this.setState({
+				schedule: noUserDashboard
+			});
+		}else{
+			if (!this.state.scheduleOn){
+				console.log('Getting schedule for: '+this.state.uid)
+				this.getUserSelections()
+				this.setState({
+					scheduleOn: true
+				})
+			}else{
+				console.log('Close Schedule')
+				this.setState({
+					scheduleOn: false
+				})
+			}
+		}
+	}
+	// need: get schedule by teaching id
+
+	async load_dashboard() {
+		if (this.state.uid === -1){
+			this.setState({
+				dashboard: noUserDashboard
+			});
+		}else{
+			if (!this.state.dashboardOn){
+				console.log('Getting cart for: '+this.state.uid)
+				var filtered = await this.getUserSelections()
+				console.log(filtered)
+				this.setState({
+					dashboardOn: true,
+					dashboard: this.create_dashboard_with_filtered_cart(filtered)
+				})
+			}else{
+				console.log('Close Cart')
+				this.setState({
+					dashboardOn: false
+				})
+			}
+		}
+	}
+
+	create_dashboard_with_filtered_cart(filtered){
+		return (<Popover id="popover-basic" title="Dashboard">
+				Wishlist: {filtered[0]} <br></br>
+				Reserved: {filtered[1]}
+				</Popover>)
+	}
+
+	async getUserSelections(){
+		console.log('Requesting user whole cart')
+		var query = 'user/'+String(this.state.uid)+'/cartItems'
+		var response = await axios.get(API + query,
+			{headers: {
+				'Authorization' : this.state.auth
+			}})
+		.catch(function (error){
+			console.log(error)
+		})
+		console.log(response.data)
+		this.setState({
+			userCart: response.data
+		})
+		return this.filter_cart()
+	}
+
+	filter_cart(){
+		var wishlist = []
+		var reserved = []
+		var result = []
+		for (var i = 0; i< this.state.userCart.length; i++){
+			if (this.state.userCart[i].type === 'reserved'){
+				reserved.push(this.state.userCart[i].courseId)
+			}else if (this.state.userCart[i].type === 'wishlist'){
+				wishlist.push(this.state.userCart[i].courseId)
+			}else{
+				console.log('missing type at: '+ String(i))
+			}
+		}
+		result.push(reserved)
+		result.push(wishlist)
+		return result
+	}
+
 	async componentDidMount() {
 		this.setState({
 			isLoading: true
 		});
 
-		console.log("TO ROWS")
+		this.load_schedule()
+		this.load_dashboard()
+
+		console.log("uid: "+this.state.uid)
 		try {
 			var courseRows = []
 			var courseRows_raw = []
@@ -103,14 +236,20 @@ class App extends Component {
 	componentWillReceiveProps(nextProps){
 		var raw_data = this.renderCardList(nextProps.response)
 		var courses = this.raw_data_extract(this.weekday_filter(this.dept_filter(raw_data, this.state.dept), this.state.weekdays));
-		console.log(raw_data)
-		console.log(courses)
-		this.setState({
-			isAdvancedSearch: false,
-			courses_raw_data: raw_data,
-			courses: courses,
-			resultPrompt: this.render_key_word(this.props.keyword)
-		})
+		if (nextProps.login){
+			this.setState({
+				uid: nextProps.uid,
+				auth: nextProps.auth
+			})
+		}
+		if (nextProps.keyword !== 'NONE'){
+			this.setState({
+				isAdvancedSearch: false,
+				courses_raw_data: raw_data,
+				courses: courses,
+				resultPrompt: this.render_key_word(this.props.keyword)
+			})
+		}
 	}
 
 	searchActionInterpret(subject, weekday){
@@ -203,8 +342,8 @@ class App extends Component {
 				</Row>
           <Row>
             <div className="cardButton">
-              <Button id="select" value= {cur_course.id} variant="success">Add to Schedule</Button>
-              <Button id="wishlist" value= {cur_course.id} variant="danger">Add to Wishlist</Button>
+              <Button id="select" value= {cur_course.id} onClick= {this.post_to_cart} variant="success">Add to Schedule</Button>
+              <Button id="wishlist" value= {cur_course.id} onClick= {this.post_to_cart} variant="danger">Add to Wishlist</Button>
             </div>
           </Row>
 			  </Card.Body>
@@ -495,6 +634,7 @@ render(){
 			100: '8pm+'
 		};
 
+
 		const popover = (
 			<Popover id="popover-basic" title="Popover right">
 				And here's some <strong>amazing</strong> content. It's very engaging. right?
@@ -534,17 +674,9 @@ render(){
 			</Popover>
 		);
 
-		const showMe = this.state.showMe;
-		var v;
-		let button;
+		var v = 'visible';
 
-		if (showMe){
-      v = "visible";
-      console.log('vis')
-    } else{
-      v= "notVisible";
-      console.log('not')
-    }
+
 		return (
 			<div className="App">
 				<div className="container-fluid mx-2">
@@ -691,13 +823,14 @@ render(){
 							{this.state.courses}
 						</Col>
 
-						<div className="col-xs-0 col-md-2 col-lg-2 popovers">
-              <OverlayTrigger trigger="click" placement="left" overlay={popover}>
-                <Button className="schedulePop btn-info" variant="success" id="extraBtn">Schedule</Button>
+
+						<Col xs={0} md={2} lg={2}>
+              <OverlayTrigger trigger="click" placement="left" overlay={this.state.schedule}>
+                <Button className="schedulePop btn-info" onClick={this.load_schedule} variant="success" id="extraBtn">Schedule</Button>
               </OverlayTrigger>
 
-              <OverlayTrigger trigger="click" placement="left" overlay={dashboard}>
-                <Button className="dashPop btn-info" variant="success" id="extraBtn">Dashboard</Button>
+              <OverlayTrigger trigger="click" placement="left" overlay={this.state.dashboard}>
+                <Button className="dashPop btn-info" onClick={this.load_dashboard} variant="success" id="extraBtn">Dashboard</Button>
               </OverlayTrigger>
 						</div>
 					</Row>
