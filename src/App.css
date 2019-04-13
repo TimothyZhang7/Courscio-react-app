@@ -264,6 +264,24 @@ td {
     /*border-style: solid;*/
 }
 
+#select{
+    position:absolute;
+    left:5%;
+    bottom:10%;
+}
+
+#wishlist{
+    position:absolute;
+    right:42%;
+    bottom:10%;
+}
+
+#syllabus {
+    position: absolute;
+    bottom: 10%;
+    right: 0.70%;
+}
+
 .custom-modal {
   border: none;
 }
