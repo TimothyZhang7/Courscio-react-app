@@ -161,6 +161,12 @@ option {
   font-weight: bold;
 }
 
+.dash-container {
+  height: 120px;
+  width: 162px;
+  overflow: auto;
+}
+
 .card {
   border-radius: 6px;
   background-color: #ffffff !important;
