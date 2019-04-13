@@ -683,7 +683,7 @@ render(){
 					<Row>
 						<Col className="" md={3} lg={3}>
               <div className="filterLarge">
-                Advanced Research
+                Advanced Search
               </div>
 							<div container="true" className="filtersmall">
                 <div id = {v}>
