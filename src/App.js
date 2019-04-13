@@ -824,7 +824,7 @@ render(){
 						</Col>
 
 
-						<Col xs={0} md={2} lg={2}>
+						<div className="col-xs-0 col-md-2 col-lg-2 popovers">
               <OverlayTrigger trigger="click" placement="left" overlay={this.state.schedule}>
                 <Button className="schedulePop btn-info" onClick={this.load_schedule} variant="success" id="extraBtn">Schedule</Button>
               </OverlayTrigger>
