@@ -23,8 +23,15 @@ major: "None", name: "null", prerequisite: "No prerequisite",
 schoolId: -1, score: 0, semester: "Fall 2019", 
 start_t:"0000", title: "System Error", weekday: "NO"};
 
-const noUserDashboard = (<Popover id="popover-basic" title="Please login">
-				Please <strong>login</strong>
+const noUserDashboard = (<Popover id="popover-basic" title="Dashboard">
+			<div className="dash-labels">Courses In Schedule:</div>
+			<div className="dash-container">
+	        Please login to use this feature
+	        </div>
+        	<div className="dash-labels my-2">Wishlist:</div>
+        	<div className="dash-container">
+        	If already logged in, open it again
+        	</div>
 			</Popover>);
 
 class App extends Component {
@@ -92,6 +99,11 @@ class App extends Component {
 		console.log(cid)
 		console.log(type)
 
+		var data = new FormData()
+		data.append('courseId',cid)
+		data.append('userId', this.state.uid)
+		data.append('type', type)
+
 		if (this.state.uid === -1){
 			console.log('not logged in')
 		}else{
@@ -99,10 +111,7 @@ class App extends Component {
 			var qs = querystring.stringify()
 			console.log(this.state.auth)
 			var response = await axios.post(API + query,
-				{courseId: cid,
-					userId: this.state.uid,
-					type: type
-				},
+				data,
 				{headers: {
 					'Authorization' : this.state.auth
 				}})
@@ -159,10 +168,35 @@ class App extends Component {
 	}
 
 	create_dashboard_with_filtered_cart(filtered){
+		var reserved = filtered[0]
+		var wishlist = filtered[1]
+		var reserved_divs = []
+		var wishlist_divs = []
+		for (var i = 0; i< reserved.length; i++){
+			reserved_divs.push(<div className="schedule-course">
+        		&bull;  {reserved[i]}
+        		<div className="remove">X</div>
+        		<div className="send-down">d</div>
+        	</div>)
+		}
+		for (var i = 0; i< wishlist.length; i++){
+			wishlist_divs.push(<div className="schedule-course">
+        		&bull;  {wishlist[i]}
+        		<div className="remove">X</div>
+        		<div className="send-down">d</div>
+        	</div>)
+		}
+
 		return (<Popover id="popover-basic" title="Dashboard">
-				Wishlist: {filtered[0]} <br></br>
-				Reserved: {filtered[1]}
-				</Popover>)
+			<div className="dash-labels">Courses In Schedule:</div>
+			<div className="dash-container">
+	        {reserved_divs}
+	        </div>
+        	<div className="dash-labels my-2">Wishlist:</div>
+        	<div className="dash-container">
+        	{wishlist_divs}
+        	</div>
+			</Popover>)
 	}
 
 	async getUserSelections(){
