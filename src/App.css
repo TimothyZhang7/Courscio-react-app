@@ -215,6 +215,11 @@ td {
     border-radius: .2rem;
 }
 
+.personalWebsiteButton {
+    background-color: #7EA4DE;
+    border-color: #7EA4DE;
+}
+
 #wishlist {
   background: #31906F;
 }
@@ -278,8 +283,33 @@ td {
 
 #syllabus {
     position: absolute;
-    bottom: 10%;
-    right: 0.70%;
+    /*bottom: 49%;*/
+    bottom: 6%;
+    right: 18%;
+    height: 2.5em;
+    width: 7.9em;
+    /*padding: .375rem .75rem .575rem;*/
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    /*right: 17%;*/
+    /*width: 10.9em;*/
+}
+
+#rateButton {
+    margin: 10px 0px;
+    background-color: #7EA4DE;
+    font-weight: bold;
+    border: none;
+    border-radius: 0 0 0 0px;
+    min-height: 25px;
+    padding: 0 0 0 0em;
+    /*padding: .25rem .9rem;*/
+    /*padding: 0 0 0 0px;*/
+    width: 6.9em;
+    font-size: .875rem;
+    line-height: 1;
+    /*border-style: solid;*/
 }
 
 .custom-modal {
@@ -320,14 +350,21 @@ td {
 }
 
 .rating__subtitle {
-  font-size: 1em;
-  color: #707070;
-  font-weight: 600;
+    font-size: 1em;
+    color: #707070;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.rating__subtitle-sub {
-  font-size: .7em;
+.rating__subtitle--sub {
+    font-size: .9em;
+    /*font-weight: 600;*/
+    white-space: nowrap;
+    color: #707070;
+    /*white-space: nowrap;*/
+    /*color: red;*/
 }
+
 
 .flip-main {
   -webkit-transition: 1s;
@@ -394,20 +431,7 @@ td {
   /*width:5.5em;*/
 }
 
-#rateButton {
-    margin: 10px 0px;
-    font-weight: bold;
-    border: none;
-    border-radius: 0 0 0 0px;
-    min-height: 25px;
-    padding: 0 0 0 0em;
-    /*padding: .25rem .9rem;*/
-    /*padding: 0 0 0 0px;*/
-    width: 8.2em;
-    font-size: .875rem;
-    line-height: 1;
-    /*border-style: solid;*/
-}
+
 
 
 @media only screen and (max-width:768px){

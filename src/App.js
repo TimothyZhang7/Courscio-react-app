@@ -337,7 +337,7 @@ class App extends Component {
 					</Col>
 					<Col xs={2} className="rating-section align-middle">
             <div className="rating">{cur_course.score}</div>
-            <div className="rating__subtitle">Overall Rating</div>
+            <div className="rating__subtitle">Course Rating</div>
 					</Col>
 				</Row>
           <Row>
@@ -883,7 +883,7 @@ render(){
                         <div className="rating__subtitle">Overall Rating</div>
                         <div className="rating__subtitle--sub">(30 peers rated)</div>
                         <OverlayTrigger trigger="click" placement="left" overlay={rate}>
-                          <button id="rateButton" className="btn btn-info">RATE This Course</button>
+                          <button id="rateButton" className="btn btn-info">RATE</button>
                         </OverlayTrigger>
                       </Col>
                     </Row>
@@ -936,16 +936,19 @@ render(){
                           />
                         </p>
 										   <h5 className="prof__name">{this.state.cur_course.name}</h5>
-                       <div className="rating">504</div>
-										   <p className="">Citations</p>
-                       <p className="prof__subtext"><b>PhD, Cornell University, 2004</b></p>
+
+
+                                                    <p className="prof__subtext"><b>PhD, Cornell University, 2004</b></p>
+                                                    <br/>
+
+
                        <p className="prof__subtext"><b>Research Interests:</b></p>
                        <p className="prof__subtext"> 
                         Economics of Education, Labor Economics, 
                         Applied Econometrics,Environmental Economics, 
                         Public Economics
                       </p>
-                      <button className="btn btn-secondary mx-2 my-2">Personal Website</button>
+                      <button className="btn btn-secondary mx-2 my-2 personalWebsiteButton">Personal Website</button>
 									   </div>
 								   </div>
 								</Col>

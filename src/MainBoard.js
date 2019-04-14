@@ -75,7 +75,7 @@ class MainBoard extends Component{
 			console.log('gapi initialized');
 			try{
 				window.gapi.signin2.render('g-signin2', {
-		     	'width': 120,
+		     	'width': 150,
 		     	'height': 30,
 		     	'longtitle': true,
 		     	'onsuccess': this.onSignIn
