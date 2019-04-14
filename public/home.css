@@ -41,8 +41,9 @@ nav {
 }
 
 .container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
-	padding-left: 0px;
-	padding-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    /*max-width: 580px;*/
 }
 
 .col-md-7.col-lg-7.ml-3.mt-1{
