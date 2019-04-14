@@ -12,6 +12,7 @@ import { Card,
 import {Slider, Rate} from 'antd';
 import axios from 'axios';
 import './App.css';
+import noCoursePng from './comics/noCourse.png'
 
 const API = '/v1/';
 
@@ -252,7 +253,7 @@ class App extends Component {
 					{/* <Card.Body>
 						<Card.Title>Use the filter or search box to find courses</Card.Title>
 					</Card.Body> */}
-					<img className="card-img-bottom" src="comics/noCourse.png" alt="noCourse" />
+					<img className="card-img-bottom" src={noCoursePng} alt="noCourse" />
 					<br />
 				</Card>
 			courseRows.push(courseRow)

@@ -5,6 +5,7 @@ import './index.css';
 import axios from 'axios';
 import App from './App';
 import Search from './Search';
+import LogoLarge from './icons/Logo-l.png';
 
 const API = '/v1/'
 
@@ -149,7 +150,7 @@ class MainBoard extends Component{
 			<div>
         <nav className="navbar navbar-expand-lg navbar-light">
           <a className="navbar-brand nav-link mx-auto" href="home.html" id="symbol">
-            <img className="image-fluid" id="logo" src="/Logo.png" alt="logo"/>
+            <img className="image-fluid" id="logo" src={LogoLarge} alt="logo"/>
           </a>    
 
           <div className="mx-2 my-auto d-flex w-100 flex-last">
@@ -169,7 +170,7 @@ class MainBoard extends Component{
 
           <div className="collapse navbar-collapse flex-unordered flex-sm-last" id="navbarSupportedContent">
             <div className="navbar-nav navbar-right mx-auto">
-              <a className="nav-item" href="/">Home</a>
+              <a className="nav-item" href="/home.html">Home</a>
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
 
