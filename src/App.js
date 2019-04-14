@@ -130,6 +130,8 @@ class App extends Component {
 		}else{
 			if (!this.state.scheduleOn){
 				console.log('Getting schedule for: '+this.state.uid)
+				var response = await axios.get(API + "list?ids=1,2,3")
+				console.log(response)
 				this.getUserSelections()
 				this.setState({
 					scheduleOn: true
