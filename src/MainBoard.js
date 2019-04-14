@@ -75,7 +75,7 @@ class MainBoard extends Component{
 			console.log('gapi initialized');
 			try{
 				window.gapi.signin2.render('g-signin2', {
-		     	'width': 120,
+		     	'width': 150,
 		     	'height': 30,
 		     	'longtitle': true,
 		     	'onsuccess': this.onSignIn
@@ -154,7 +154,7 @@ class MainBoard extends Component{
 
           <div className="mx-2 my-auto d-flex w-100 flex-last">
             <Search search_states={this.state} onSearch={this.handle_search} />
-          </div>  
+          </div>
 
           <button
             className="navbar-toggler"
@@ -172,6 +172,7 @@ class MainBoard extends Component{
               <a className="nav-item" href="/">Home</a>
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
+
               <span><div
                 id='g-signin2' /></span>
             </div>

@@ -4,11 +4,7 @@ html, body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	overflow: auto;
-}
-
-.row {
-	margin-top: 300px 0;
+	overflow-x: hidden;
 }
 
 nav {
@@ -19,8 +15,8 @@ nav {
   margin: 0 16px;
   font-family: "Open Sans",sans-serif;
   color: #3d3d3d;
-  font-size: 1.2em;
-  font-weight: medium;
+  font-size: 1.05em;
+  font-weight: bold;
 }
 
 .nav-item:hover {
@@ -39,9 +35,15 @@ nav {
 	padding-left: 0px;
 }
 
+#header {
+  color: #383838;
+  font-size: 3em;
+}
+
 .container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
-	padding-left: 0px;
-	padding-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    /*max-width: 580px;*/
 }
 
 .col-md-7.col-lg-7.ml-3.mt-1{
@@ -56,10 +58,6 @@ nav {
 	height: 4.3em;
 }
 
-.navbar {
-	border-bottom: 1px solid lightgray;
-}
-
 .btn-light {
 	background-color: transparent !important;
 	border-color: #ced4da;
@@ -70,18 +68,37 @@ nav {
 	margin-left: 0px;
 }
 
-#findCourse{
+#findCourse {
 	text-align: right;
 }
 
-.btn-danger{
-	width: 100%;
-	height: 70%;
-	margin-top: 8%;
-	background-color: #E25A64 !important;
-	border-color:  #E25A64 !important;
-	box-shadow: 5px 8px 8px lightgrey;
-	font-size: 22px;
+.btn {
+    width: 370px;
+    padding: 18px 0px 18px 0px;
+}
+
+.btn-danger {
+    /*width: 100%;*/
+    /*height: 75%;*/
+    margin-top: 8%;
+    background-color: #E38D93 !important;
+    border: solid 3px #E25A64;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.buttonExtraText {
+    text-align: right;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.navbar-custom {
+  padding: 0 3em !important;
 }
 
 h1 {
@@ -90,12 +107,12 @@ h1 {
 
 h2 {
 	font-size: 34px;
-	padding-left: 0.2em;
 }
 
 p {
-	font-size: 16px;
-	line-height: 1.4;
+  font-size: 1.4em;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+	line-height: 1.6;
 }
 
 #bannerCard {
@@ -113,6 +130,7 @@ p {
 
 .card-text {
 	font-size: 16px;
+    line-height: 95%;
 }
 
 .card-img-top {
@@ -135,13 +153,13 @@ p {
 	height: auto;
 }
 
-#about_text {
-	padding-left: 1em;
+.top-buffer .image-fluid {
+	height: auto;
 }
 
-.top-buffer .image-fluid {
-	width: 250%;
-	height: auto;
+#about-desc {
+  font-size: 3em;
+  font-weight: bold;
 }
 
 .box15{
