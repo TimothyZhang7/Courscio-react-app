@@ -99,7 +99,7 @@ option {
 .card-img-bottom {
   width: 40% !important;
   height: auto;
-  margin: 250px auto;
+  margin: 220px auto;
 }
 
 
@@ -260,7 +260,8 @@ td {
 
 #result-pool {
   height: 800px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  box-shadow: 0 0 8px 8px white inset;
 }
 
 #wishlist {
