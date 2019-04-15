@@ -358,6 +358,7 @@ td {
 
 .custom-modal {
   border: none;
+  overflow: hidden;
 }
 
 .cardButton {
@@ -464,6 +465,8 @@ td {
 
 .media-list {
   padding: 0;
+  height:400px;
+  overflow-y:auto;
 }
 
 .media-body {
