@@ -13,6 +13,7 @@ import {Slider, Rate} from 'antd';
 import axios from 'axios';
 import './App.css';
 import noCoursePng from './comics/noCourse.png'
+import loader from './icons/loading.svg'
 
 const API = '/v1/';
 
@@ -31,7 +32,7 @@ const noUserDashboard = (<Popover id="popover-basic" title="Dashboard">
 	        </div>
         	<div className="dash-labels my-2">Wishlist:</div>
         	<div className="dash-container">
-        	If already logged in, open it again
+        	<img src={loader}/>
         	</div>
 			</Popover>);
 

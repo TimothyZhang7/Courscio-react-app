@@ -56,6 +56,7 @@ nav {
 
 #logo{
 	height: 4.3em;
+	margin: 0.5em 0 0.5em 0;
 }
 
 .btn-light {
@@ -263,6 +264,7 @@ p {
 	width:80%;
 	transition:all 1s ease .8s
 }
+
 
 footer a {
 	color: white;

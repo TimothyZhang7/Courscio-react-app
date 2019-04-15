@@ -8,7 +8,6 @@ class Home extends Component{
   render(){
   return(
     <div>
-  <head>
     <meta charSet="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
@@ -17,14 +16,12 @@ class Home extends Component{
     <link rel="stylesheet" type="text/css" href="small-device.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossOrigin="anonymous"/>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <title>Courscio</title>
-  </head>
 
-  <body>
+  <div>
     <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
       <div className="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <Link to="/home" className="navbar navbar-brand col-1 ml-3" >
-          <img className="image-fluid" id="logo" src={LogoLarge} alt="logo"/>
+        <Link to="/home" className="col-1 ml-3" >
+          <img className="image-fluid home-logo" id="logo" src={LogoLarge} alt="logo"/>
         </Link>
         <button className="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -338,7 +335,7 @@ class Home extends Component{
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-  </body>
+  </div>
 
 </div>
     )
