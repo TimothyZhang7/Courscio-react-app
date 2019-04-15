@@ -6,6 +6,7 @@ import axios from 'axios';
 import App from './App';
 import Search from './Search';
 import LogoLarge from './icons/Logo-l.png';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const API = '/v1/'
 
@@ -149,9 +150,9 @@ class MainBoard extends Component{
 		return(
 			<div>
         <nav className="navbar navbar-expand-lg navbar-light">
-          <a className="navbar-brand nav-link mx-auto" href="home.html" id="symbol">
+          <Link to="/home" className="navbar-brand nav-link mx-auto" id="symbol">
             <img className="image-fluid" id="logo" src={LogoLarge} alt="logo"/>
-          </a>    
+          </Link>    
 
           <div className="mx-2 my-auto d-flex w-100 flex-last">
             <Search search_states={this.state} onSearch={this.handle_search} />
@@ -170,7 +171,7 @@ class MainBoard extends Component{
 
           <div className="collapse navbar-collapse flex-unordered flex-sm-last" id="navbarSupportedContent">
             <div className="navbar-nav navbar-right mx-auto">
-              <a className="nav-item" href="/home.html">Home</a>
+              <Link to="/home" className="nav-item" >Home</Link>
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
 

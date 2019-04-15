@@ -1,0 +1,280 @@
+/* Home page HTML content styles only */
+html, body { 
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+nav {
+	margin-bottom: 32px;
+}
+
+.nav-item {
+  margin: 0 16px;
+  font-family: "Open Sans",sans-serif;
+  color: #3d3d3d;
+  font-size: 1.05em;
+  font-weight: bold;
+}
+
+.nav-item:hover {
+  color: darkslategray;
+}
+
+.col-xs-0.col-sm-1.col-md-1.col-lg-1{
+	padding: 0px;
+	margin: 0px;
+}
+
+.navbar.navbar-expand-lg.navbar-light {
+	margin-right: 0px;
+	margin-left: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+#header {
+  color: #383838;
+  font-size: 3em;
+}
+
+.container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+    /*max-width: 580px;*/
+}
+
+.col-md-7.col-lg-7.ml-3.mt-1{
+	padding: 0px;
+}
+
+.col-lg-auto {
+	padding-right: 0px;
+}
+
+#logo{
+	height: 4.3em;
+}
+
+.btn-light {
+	background-color: transparent !important;
+	border-color: #ced4da;
+}
+
+#sloganRow {
+	margin-bottom: 3.5% !important;
+	margin-left: 0px;
+}
+
+#findCourse {
+	text-align: right;
+}
+
+.btn {
+    width: 370px;
+    padding: 18px 0px 18px 0px;
+}
+
+.btn-danger {
+    /*width: 100%;*/
+    /*height: 75%;*/
+    margin-top: 8%;
+    background-color: #E38D93 !important;
+    border: solid 3px #E25A64;
+    font-size: 1.8em;
+    font-weight: bold;
+    border-radius: 0px;
+}
+
+.buttonExtraText {
+    text-align: right;
+    display: block;
+    font-size: 14px;
+    line-height: 14px;
+    padding-right: 0px;
+    margin-right: 0px;
+}
+
+.navbar-custom {
+  padding: 0 3em !important;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 34px;
+}
+
+p {
+  font-size: 1.4em;
+  /* font-family: Georgia, 'Times New Roman', Times, serif; */
+	line-height: 1.6;
+}
+
+#bannerCard {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.card {
+	border-color: transparent;
+}
+
+.card-title {
+	font-size: 26px;
+	text-align: left;
+}
+
+.card-text {
+	font-size: 16px;
+    line-height: 95%;
+}
+
+.card-img-top {
+	width: 110%;
+	height: auto;
+}
+
+#findCourse-button {
+	color: white;
+}
+
+.top-buffer { margin-top:20px; }
+
+.row.my-4{
+	height: 15%;
+}
+
+#aboutpng {
+	width: 130%;
+	height: auto;
+}
+
+.top-buffer .image-fluid {
+	height: auto;
+}
+
+#about-desc {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.box15{
+	position:relative
+}
+
+.box15 img{
+	width:100%;
+	height:auto
+}
+
+.box15 .box-content{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+	transition:all .5s ease 0s}
+
+.box15:hover .box-content{
+	background-color:rgba(255,255,255,.8)
+}
+
+.box15 .box-content:after,.box15 .box-content:before{
+	content:"";
+	width:50px;
+	height:50px;
+  position:absolute;
+  opacity:0;
+	transform:scale(1.5);
+	transition:all .6s ease .3s
+}
+
+.box15 .box-content:before{
+	border-left:1px solid #040404;
+	border-top:1px solid #040404;
+	top:19px;
+	left:19px
+}
+
+.box15 .box-content:after{
+	border-bottom:1px solid #040404;
+	border-right:1px solid #040404;
+	bottom:19px;right:19px
+}
+
+.box15:hover .box-content:after,.box15:hover .box-content:before{
+	opacity:1;
+	transform:scale(1)
+}
+
+.box15 .title{
+	font-size:22px;
+	color:#000;
+	margin:0;
+	position:relative;
+	text-align: center;
+	top:0;
+	opacity:0;
+	transition:all 1s ease 10ms
+}
+
+.box15 .text{
+	font-size:16px;
+	color:#000;
+	margin:0;
+	position:relative;
+	text-align: center;
+	margin-top: 0.5em;
+	opacity:0;
+	transition:all 1s ease 10ms;
+	font-weight: 300;
+}
+
+.box15:hover .title{
+  top: 39%; 
+  opacity: 1;
+	transition: all .5s cubic-bezier(1,-.53,.405,1.425) 10ms;
+}
+
+.box15:hover .text{
+  top: 39%;
+  opacity: 1;
+	transition: all .5s cubic-bezier(1,-.53,.405,1.425) 10ms;
+}
+
+.box15 .title:after{
+	content: "";
+	width: 0;
+	height: 1px;
+	background:#040404;
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	transition: all 1s ease 0s
+}
+
+.box15:hover .title:after {
+	width:80%;
+	transition:all 1s ease .8s
+}
+
+footer a {
+	color: white;
+}
+
+@media only screen and (max-width:990px){
+	.box15{margin-bottom:30px}
+	nav {
+		margin-right: 20px;
+	}
+}
+
+a:hover {
+	color: #E0E0E0;
+}

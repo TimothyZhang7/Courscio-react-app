@@ -176,14 +176,14 @@ class App extends Component {
 		var reserved_divs = []
 		var wishlist_divs = []
 		for (var i = 0; i< reserved.length; i++){
-			reserved_divs.push(<div className="schedule-course">
+			reserved_divs.push(<div className="schedule-course" key={i}>
         		&bull;  {reserved[i]}
         		<div className="remove">X</div>
         		<div className="send-down">d</div>
         	</div>)
 		}
 		for (var i = 0; i< wishlist.length; i++){
-			wishlist_divs.push(<div className="schedule-course">
+			wishlist_divs.push(<div className="schedule-course" key={i}>
         		&bull;  {wishlist[i]}
         		<div className="remove">X</div>
         		<div className="send-down">d</div>
@@ -360,7 +360,7 @@ class App extends Component {
             <div className="card-text">
               <div className="card-text__row">
                 <p className="rowTitle">Description:</p>
-                <p className="text-margin">{cur_course.description.substring(0, 200)} <a href="/">...more</a></p>
+                <p className="text-margin text-hidden">{cur_course.description}</p>
               </div>
               <div className="card-text__row">
               <p className="rowTitle text-margin">Instructor:</p>
@@ -439,7 +439,6 @@ class App extends Component {
 	}
 
 	findCourseById(raw_data, cid) {
-		console.log(raw_data)
 		console.log(cid)
 		for (var i= 0; i< raw_data.length; i++){
 			if (raw_data[i].length === 6){
@@ -855,7 +854,7 @@ render(){
 								</div>
 							</div>
 						</Col>
-						<Col xs={12} md={7} lg={7}>
+						<Col xs={12} md={7} lg={7} id="result-pool">
 							{this.state.resultPrompt}
 							{this.state.courses}
 						</Col>
@@ -903,7 +902,7 @@ render(){
                         <div className="card-text">
                           <div className="card-text__row">
                             <p className="rowTitle">Description:</p>
-                            <p className="text-margin">{this.state.cur_course.description.substring(0, 200)} <a href="/">...more</a></p>
+                            <p className="text-margin text-hidden">{this.state.cur_course.description}</p>
                           </div>
                           <div className="card-text__row">
                           <p className="rowTitle text-margin">Instructor:</p>
@@ -928,7 +927,7 @@ render(){
 											<div className="cardButtonMod">
 												<Button id="select" variant="success">Add to Schedule</Button>
 												<Button id="wishlist" variant="danger">Add to Wishlist</Button>
-												<Button id="syllabus" variant="secondary">SYLLABUS</Button>
+												<Button id="syllabus_pop" variant="secondary">SYLLABUS</Button>
 											</div>
 										</Row>
 									</Card.Body>

@@ -1,5 +1,25 @@
 @import '~antd/dist/antd.css';
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #87AFC7; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3090C7; 
+}
+
 .App {
   margin-top: 24px;
 }
@@ -212,6 +232,18 @@ td {
 
 .text-margin {
   margin: 0 8px;
+  
+}
+.text-hidden {
+  height: 3em;
+  text-overflow: ellipsis;
+  overflow:hidden;
+}
+.text-hidden:hover {
+  color: #151B54; 
+  overflow: visible; 
+  white-space: normal;
+  height:auto; /* just added this line */
 }
 
 .btn-sm {
@@ -224,6 +256,11 @@ td {
 .personalWebsiteButton {
     background-color: #7EA4DE;
     border-color: #7EA4DE;
+}
+
+#result-pool {
+  height: 800px;
+  overflow-y: scroll;
 }
 
 #wishlist {
@@ -240,7 +277,7 @@ td {
     /*border-radius: .2rem;*/
 }
 
-#syllabus {
+#syllabus_pop {
     background: #7EA4DE;
     margin: 0 12px;
     font-weight: bold;
@@ -260,7 +297,7 @@ td {
     padding: 0 0 0 0em;
 }*/
 
-#select, #wishlist, #syllabus {
+#select, #wishlist, #syllabus_pop {
     margin: 0 12px;
     font-weight: bold;
     border: none;
@@ -287,7 +324,7 @@ td {
     bottom:10%;
 }
 
-#syllabus {
+#syllabus_pop {
     position: absolute;
     /*bottom: 49%;*/
     bottom: 6%;
@@ -436,6 +473,7 @@ td {
   float: right;
   /*width:5.5em;*/
 }
+
 
 
 
