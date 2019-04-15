@@ -89,6 +89,7 @@ class App extends Component {
 		this.post_to_cart = this.post_to_cart.bind(this)
 		this.filter_cart = this.filter_cart.bind(this)
 		this.create_dashboard_with_filtered_cart = this.create_dashboard_with_filtered_cart.bind(this)
+		this.list_schedule_objs = this.list_schedule_objs.bind(this)
 	}
 
 	async post_to_cart(e){
@@ -132,9 +133,9 @@ class App extends Component {
 		}else{
 			if (!this.state.scheduleOn){
 				console.log('Getting schedule for: '+this.state.uid)
-				var response = await axios.get(API + "list?ids=1,2,3")
-				console.log(response)
-				this.getUserSelections()
+				var filtered = await this.getUserSelections()
+				var reserved = filtered[0]
+				var schedule_objs = await this.list_schedule_objs(reserved)
 				this.setState({
 					scheduleOn: true
 				})
@@ -146,7 +147,17 @@ class App extends Component {
 			}
 		}
 	}
-	// need: get schedule by teaching id
+	
+	async list_schedule_objs(reserved){
+		var query = "list?ids="
+		for (var i= 0; i< reserved.length; i++){
+			query = query + String(reserved[i])+","
+		}
+		query = query.substring(0,query.length-1)
+		var response = await axios.get(API + query)
+		console.log(API + query)
+		console.log(response)
+	}
 
 	async load_dashboard() {
 		if (this.state.uid === -1){
@@ -251,9 +262,6 @@ class App extends Component {
 			var courseRows = []
 			var courseRows_raw = []
 			const courseRow = <Card className="noCourse-card" text="black" key="0">
-					{/* <Card.Body>
-						<Card.Title>Use the filter or search box to find courses</Card.Title>
-					</Card.Body> */}
 					<img className="card-img-bottom" src={noCoursePng} alt="noCourse" />
 					<br />
 				</Card>
