@@ -23,7 +23,7 @@
     "react-toggle-display": "^2.2.0"
   },
   "scripts": {
-    "start": "HTTPS=true HOST=courscio.com PUBLIC_URL= https://www.courscio.com react-scripts start",
+    "start": "HTTPS=true HOST=courscio.com PUBLIC_URL= https://courscio.com react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
