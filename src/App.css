@@ -137,6 +137,12 @@ option {
   align-items: center;
 }
 
+.calendar {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+}
+
 .remove, .send-up, .send-down {
   display: flex;
   align-items: center;

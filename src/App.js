@@ -15,7 +15,11 @@ import './App.css';
 import noCoursePng from './comics/noCourse.png'
 import loader from './icons/loading.svg'
 import $ from 'jquery';
-import "fullcalendar";
+import Moment from "react-moment"
+import "fullcalendar/dist/fullcalendar";
+import 'fullcalendar-scheduler';
+import 'fullcalendar/dist/fullcalendar.css';
+import 'fullcalendar-scheduler/dist/scheduler.css';
 
 const API = '/v1/';
 
@@ -36,6 +40,10 @@ const noUserDashboard = (<Popover id="popover-basic" title="Dashboard">
         	<div className="dash-container">
         	<img src={loader}/>
         	</div>
+			</Popover>);
+
+const noUserSchedule = (<Popover id="popover-basic" className= "calendar" title="Schedule">
+			<div id="caldendar"></div>
 			</Popover>);
 
 class App extends Component {
@@ -60,7 +68,7 @@ class App extends Component {
 			cur_course: noCourse,
 			comment: "",
 			comments: [],
-			schedule: noUserDashboard,
+			schedule: noUserSchedule,
 			dashboard: noUserDashboard,
 			userCart: [],
 			scheduleOn: false,
@@ -93,6 +101,7 @@ class App extends Component {
 		this.create_dashboard_with_filtered_cart = this.create_dashboard_with_filtered_cart.bind(this)
 		this.list_schedule_objs = this.list_schedule_objs.bind(this)
 		this.create_calendar_with_reserved = this.create_calendar_with_reserved.bind(this)
+		this.initialize_calendar = this.initialize_calendar.bind(this)
 	}
 
 	async post_to_cart(e){
@@ -131,7 +140,7 @@ class App extends Component {
 	async load_schedule() {
 		if (this.state.uid === -1){
 			this.setState({
-				schedule: noUserDashboard
+				schedule: noUserSchedule
 			});
 		}else{
 			if (!this.state.scheduleOn){
@@ -161,6 +170,7 @@ class App extends Component {
 		var response = await axios.get(API + query)
 		console.log(API + query)
 		console.log(response)
+		return response.data
 	}
 
 	async load_dashboard() {
@@ -197,20 +207,48 @@ class App extends Component {
 	      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
 	      events: [],
 	      resources: [
-	        { id: 'M', title: 'Mon' },
-	        { id: 'T', title: 'Tu' },
-	        { id: 'W', title: 'Wed' },
-	        { id: 'R', title: 'Th' },
-	        { id: 'F', title: 'Fri' }
+	        { id: 'MON', title: 'Mon' },
+	        { id: 'TUE', title: 'Tu' },
+	        { id: 'WEN', title: 'Wed' },
+	        { id: 'THU', title: 'Th' },
+	        { id: 'FRI', title: 'Fri' }
 	      ]
 	    });
-	    return "finished";
+  	}
+
+  	updateCalendar(reserved) {
+  		$("#calendar").fullCalendar('removeEvents');
+  		console.log(reserved)
+  		for (var i= 0; i< reserved.length; i++){
+  			console.log(reserved[i].cname)
+  			$("#calendar").fullCalendar('renderEvent', {
+	        id: i,
+	        title: reserved[i].cname,
+	        start: `${reserved[i].start_t.substring(0,2)}:${reserved[i].start_t.substring(2)}:00`,
+	        end: `${reserved[i].end_t.substring(0,2)}:${reserved[i].end_t.substring(2)}:00`,
+	        resourceIds: [reserved[i].weekday],
+	        backgroundColor: '#e6fffa'
+
+      	});
+  		}
+  		
   	}
 
   	create_calendar_with_reserved(reserved){
-  		var fin = this.drawCalendar()
-  		console.log(fin)
-  		return (<Popover id="popover-basic" title="Schedule">
+  		console.log(reserved)
+  		this.drawCalendar()
+  		console.log("initialized calendar")
+  		this.updateCalendar(reserved)
+  		console.log("updated calendar")
+  		return (<Popover id="popover-basic" className = "calendar" title="Schedule">
+				<div id="calendar"></div>
+			</Popover>)
+  	}
+
+  	initialize_calendar(){
+  		this.drawCalendar()
+  		console.log("initialized calendar")
+  		return (<Popover id="popover-basic" className = "calendar" title="Schedule">
 				<div id="calendar"></div>
 			</Popover>)
   	}
@@ -302,7 +340,8 @@ class App extends Component {
 			courseRows_raw.push([courseRow],800,2400)
 			this.setState({
 				courses: courseRows,
-				courses_raw_data: courseRows_raw
+				courses_raw_data: courseRows_raw,
+				schedule: this.initialize_calendar()
 			})
 		} catch {
 			this.setState({
