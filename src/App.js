@@ -14,6 +14,8 @@ import axios from 'axios';
 import './App.css';
 import noCoursePng from './comics/noCourse.png'
 import loader from './icons/loading.svg'
+import $ from 'jquery';
+import "fullcalendar";
 
 const API = '/v1/';
 
@@ -90,6 +92,7 @@ class App extends Component {
 		this.filter_cart = this.filter_cart.bind(this)
 		this.create_dashboard_with_filtered_cart = this.create_dashboard_with_filtered_cart.bind(this)
 		this.list_schedule_objs = this.list_schedule_objs.bind(this)
+		this.create_calendar_with_reserved = this.create_calendar_with_reserved.bind(this)
 	}
 
 	async post_to_cart(e){
@@ -137,7 +140,8 @@ class App extends Component {
 				var reserved = filtered[0]
 				var schedule_objs = await this.list_schedule_objs(reserved)
 				this.setState({
-					scheduleOn: true
+					scheduleOn: true,
+					schedule: this.create_calendar_with_reserved(schedule_objs)
 				})
 			}else{
 				console.log('Close Schedule')
@@ -181,6 +185,35 @@ class App extends Component {
 			}
 		}
 	}
+
+	drawCalendar() {
+	    $("#calendar").fullCalendar({
+	      defaultView: 'agendaDay',
+	      height: 630,
+	      header: false,
+	      allDaySlot: false,
+	      minTime: '08:00:00',
+	      maxTime: '21:00:00',
+	      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+	      events: [],
+	      resources: [
+	        { id: 'M', title: 'Mon' },
+	        { id: 'T', title: 'Tu' },
+	        { id: 'W', title: 'Wed' },
+	        { id: 'R', title: 'Th' },
+	        { id: 'F', title: 'Fri' }
+	      ]
+	    });
+	    return "finished";
+  	}
+
+  	create_calendar_with_reserved(reserved){
+  		var fin = this.drawCalendar()
+  		console.log(fin)
+  		return (<Popover id="popover-basic" title="Schedule">
+				<div id="calendar"></div>
+			</Popover>)
+  	}
 
 	create_dashboard_with_filtered_cart(filtered){
 		var reserved = filtered[0]
