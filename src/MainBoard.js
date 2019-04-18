@@ -175,8 +175,8 @@ class MainBoard extends Component{
               <a className="nav-item" href="/">About</a>
               <a className="nav-item" href="/">Contact</a>
 
-              {/* <span><div
-                id='g-signin2' /></span> */}
+              <span><div
+                id='g-signin2' /></span>
             </div>
           </div>
         </nav>  

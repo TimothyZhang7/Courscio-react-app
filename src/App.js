@@ -65,6 +65,7 @@ class App extends Component {
 			err: false,
 			dept: "Nothing",
 			weekdays: [],
+			credit: "Nothing",
 			isAdvancedSearch: true,
 			semester: "Fall 2019",
 			school: "Arts, Science, and Engineering",
@@ -91,11 +92,12 @@ class App extends Component {
 		this.unloadCurCourse = this.unloadCurCourse.bind(this)
 		this.dept_filter = this.dept_filter.bind(this)
 		this.weekday_filter = this.weekday_filter.bind(this)
+		this.credit_filter = this.credit_filter.bind(this)
 		this.raw_data_extract = this.raw_data_extract.bind(this)
 		this.searchActionInterpret = this.searchActionInterpret.bind(this)
 		this.render_key_word = this.render_key_word.bind(this)
 		this.onDestroySearchResult = this.onDestroySearchResult.bind(this)
-		this.onDateDeptChange = this.onDateDeptChange.bind(this)
+		this.onDateDeptCreditChange = this.onDateDeptCreditChange.bind(this)
 		this.renderCardList = this.renderCardList.bind(this)
 		this.load_schedule = this.load_schedule.bind(this)
 		this.load_dashboard = this.load_dashboard.bind(this)
@@ -357,7 +359,7 @@ class App extends Component {
 
 	componentWillReceiveProps(nextProps){
 		var raw_data = this.renderCardList(nextProps.response)
-		var courses = this.raw_data_extract(this.weekday_filter(this.dept_filter(raw_data, this.state.dept), this.state.weekdays));
+		var courses = this.raw_data_extract(this.weekday_filter(this.dept_filter(this.credit_filter(raw_data, this.state.credit), this.state.dept), this.state.weekdays));
 		if (nextProps.login){
 			this.setState({
 				uid: nextProps.uid,
@@ -374,12 +376,20 @@ class App extends Component {
 		}
 	}
 
-	searchActionInterpret(subject, weekday){
+	searchActionInterpret(subject, weekday, credit){
 		if (subject === 'NONE'){
 			subject = this.state.dept
 		}else{
 			this.setState({
 				dept: subject
+			})
+		}
+
+		if (credit === 'NONE'){
+			credit = this.state.credit
+		}else{
+			this.setState({
+				credit: credit
 			})
 		}
 		var temp = []
@@ -402,9 +412,9 @@ class App extends Component {
 			}
 		}
 		if (this.state.isAdvancedSearch === true){
-			this.ReMount(subject, temp)
+			this.ReMount(subject, temp, credit)
 		}else{
-			this.onDateDeptChange(temp, subject)
+			this.onDateDeptCreditChange(temp, subject, credit)
 		}
 	}
 
@@ -478,7 +488,7 @@ class App extends Component {
 		return courseRows_raw
 	}
 
-	async ReMount(subject, weekdays){
+	async ReMount(subject, weekdays, credit){
 		this.setState({
 			isLoading: true,
 			courses:[],
@@ -491,6 +501,9 @@ class App extends Component {
 
 		try {
 			let query = 'course/filters?major=' + encodeURIComponent(subject) + '&semester=' + encodeURIComponent(this.state.semester)
+			if (credit !== "Nothing"){
+				query = query + '&credit=' + encodeURIComponent(credit)
+			}
 			console.log(weekdays)
 			weekdays.forEach((day)=>{
 				query = query + '&weekdays=' + day
@@ -535,14 +548,28 @@ class App extends Component {
 		return undefined;
 	}
 
-	onDateDeptChange(weekdays, dept){
+	onDateDeptCreditChange(weekdays, dept, credit){
 		console.log(weekdays)
 		console.log(dept)
 		const dept_clear_courses = this.dept_filter(this.state.courses_raw_data, dept)
 		console.log(dept_clear_courses)
 		const weekday_clear_courses = this.weekday_filter(dept_clear_courses, weekdays)
 		console.log(weekday_clear_courses)
-		const courses = this.raw_data_extract(weekday_clear_courses)
+		const credit_clear_courses = this.credit_filter(weekday_clear_courses, credit)
+		console.log(credit_clear_courses)
+		const courses = this.raw_data_extract(credit_clear_courses)
+		this.setState({
+			weekdays: weekdays,
+			dept: dept,
+			credit: credit,
+			courses: courses
+		})
+	}
+
+	onCreditChange(credits){
+		console.log("change credit")
+		const credit_clear_courses = this.credit_filter(this.state.courses_raw_data, credits)
+		const courses = this.raw_data_extract(credit_clear_courses)
 		this.setState({
 			courses: courses
 		})
@@ -570,7 +597,7 @@ class App extends Component {
 		this.setState({
 			slider_val: [a, b]
 		})
-		const courses = this.time_filter(this.weekday_filter(this.dept_filter(this.state.courses_raw_data,this.state.dept),this.state.weekdays), a, b)
+		const courses = this.time_filter(this.weekday_filter(this.dept_filter(this.credit_filter(this.state.courses_raw_data, this.state.credit),this.state.dept),this.state.weekdays), a, b)
 		console.log()
 		this.setState({
 			courses: courses
@@ -592,6 +619,21 @@ class App extends Component {
 		if (tuples.length> 0 && tuples[0].length> 3 && dept !== "Nothing"){
 			for (var i=0; i<tuples.length; i++){
 				if (tuples[i][3] === dept){
+					raw_data.push(tuples[i])
+				}
+			}
+			return raw_data;
+		} else {
+			return tuples;
+		}
+	}
+
+	credit_filter(tuples, credits) {
+		var raw_data = [];
+		if (tuples.length> 0 && tuples[0].length> 5 && credits !== "Nothing"){
+			for (var i=0; i<tuples.length; i++){
+				console.log(tuples[i][5].credit + ' = ' + credits)
+				if (parseInt(tuples[i][5].credit) === parseInt(credits)){
 					raw_data.push(tuples[i])
 				}
 			}
@@ -655,7 +697,7 @@ class App extends Component {
 			courses_raw_data: [],
 			resultPrompt: ""
 		})
-		this.ReMount(this.state.dept, this.state.weekdays)
+		this.ReMount(this.state.dept, this.state.weekdays, this.state.credit)
 	}
 
 	translate_weekday(abbr){
@@ -814,20 +856,12 @@ render(){
 								</Form.Group>
 								</div>
 
-								<div id={v}>
-								<Form.Group className="formGroup" controlId="formGridSchool">
-									<Form.Control as="select" className="formControl" defaultValue= "Arts, Science, and Engineering">
-										<option hidden>School</option>
-										<option></option>
-										<option>Arts, Science, and Engineering</option>
-									</Form.Control>
-								</Form.Group>
-								</div>
+								
 
 								<div id={v}>
 									<Form.Group className="formGroup" controlId="formGridDept">
-										<Form.Control as="select" className="formControl" onChange={(event) => this.searchActionInterpret(event.target.value,"NONE")}>
-											<option hidden>Department</option>
+										<Form.Control as="select" className="formControl" onChange={(event) => this.searchActionInterpret(event.target.value,"NONE",'NONE')}>
+											<option hidden value="Nothing">Department</option>
 											<option value="Nothing"></option>
 											<option value="African &amp; African-American Studies">AAS - African &amp; African-American Studies</option>
 											<option value="Art &amp; Art History">AH - Art &amp; Art History</option>
@@ -918,6 +952,23 @@ render(){
 											<option value="Gender, Sexuality &amp; Women's Studies">WST - Women's Studies (see GSW for current courses)</option>
 											<option value="Writing Program">WRT - Writing Program</option>
 										</Form.Control>
+									</Form.Group>
+								</div>
+
+								<div id={v}>
+								<Form.Group className="formGroup" controlId="formGridSchool">
+									<Form.Control as="select" className="formControl" onChange={(event) => this.searchActionInterpret('NONE', 'NONE', event.target.value)}>
+										<option hidden value="Nothing">Credits</option>
+										<option value='Nothing'></option>
+										<option value='1'>1.0</option>
+										<option value='2'>2.0</option>
+										<option value='3'>3.0</option>
+										<option value='4'>4.0</option>
+										<option value='5'>5.0</option>
+										<option value='6'>6.0</option>
+									</Form.Control>
+								</Form.Group>
+								</div>
 
                     <div className="sliderbox">
                       <p>Time Period</p>
@@ -926,15 +977,15 @@ render(){
 
                     <ButtonToolbar xs={12} md={3} lg={2}>
                       <ToggleButtonGroup type="checkbox" defaultValue={[1, 3]} id="weekBar">
-                        <ToggleButton value={'MON'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>M</ToggleButton>
-                        <ToggleButton value={'TUE'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>T</ToggleButton>
-                        <ToggleButton value={'WEN'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>W</ToggleButton>
-                        <ToggleButton value={'THU'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>Th</ToggleButton>
-                        <ToggleButton value={'FRI'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value)}>F</ToggleButton>
+                        <ToggleButton value={'MON'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value, 'NONE')}>M</ToggleButton>
+                        <ToggleButton value={'TUE'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value, 'NONE')}>T</ToggleButton>
+                        <ToggleButton value={'WEN'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value, 'NONE')}>W</ToggleButton>
+                        <ToggleButton value={'THU'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value, 'NONE')}>Th</ToggleButton>
+                        <ToggleButton value={'FRI'} onChange={(event) => this.searchActionInterpret('NONE', event.target.value, 'NONE')}>F</ToggleButton>
                       </ToggleButtonGroup>
                     </ButtonToolbar>
-									</Form.Group>
-								</div>
+									
+								
 							</div>
 						</Col>
 						<Col xs={12} md={7} lg={7} id="result-pool">
