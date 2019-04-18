@@ -28,7 +28,8 @@ class Search extends Component{
 	render(){
 		return (
       // <form className="input-group-btn form-inline col-md-12 w-100 col-lg-10 offset-lg-2"></form>
-			<form className="input-group-btn form-inline col-md-12 col-lg-10">
+      // <form className="input-group-btn form-inline col-md-12 col-lg-10">
+      <form className="input-group-btn form-inline my-lg-0 ml-auto col-md-11">
         <div className="input-group" id="searchbar">
           <input
             className="form-control"

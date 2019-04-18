@@ -117,4 +117,7 @@
   .navbar-custom {
     padding: 0 12px !important;
   }
+  .nav-item {
+    margin: 0 4px;
+  }
 }

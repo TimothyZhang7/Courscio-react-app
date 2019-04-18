@@ -30,7 +30,7 @@ class Home extends Component{
           <div className="navbar-nav navbar-right col-lg-auto ml-auto">
             <Link to="/home" className="nav-item" >About Us</Link>
             <Link to="/" className="nav-item" >Sign Up</Link>
-            <Link to="/" className="nav-item" >Login</Link>
+            <Link to="/" className="nav-item" >Log In</Link>
             <Link to="/home" className="nav-item">Contact</Link>
           </div>
         </div>

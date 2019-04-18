@@ -36,14 +36,18 @@ const noUserDashboard = (<Popover id="popover-basic" title="Dashboard">
 			<div className="dash-container">
 	        Please login to use this feature
 	        </div>
+          <div className="line"/>
         	<div className="dash-labels my-2">Wishlist:</div>
         	<div className="dash-container">
-        	<img src={loader}/>
+        	<img alt="loader" src={loader} />
         	</div>
 			</Popover>);
 
 const noUserSchedule = (<Popover id="popover-basic" className= "calendar" title="Schedule">
 			<div id="caldendar"></div>
+      <div className="btn-wrap">
+      <button className="at-calendar">Export to Google Calendar</button>
+      </div>
 			</Popover>);
 
 class App extends Component {
@@ -432,7 +436,7 @@ class App extends Component {
             style={{ cursor: "pointer"}}
             xs={10}>
             <Card.Title>
-              CRN - {cur_course.crn}&nbsp;
+              CRN {cur_course.crn}&nbsp;&nbsp;&nbsp;
               {cur_course.cname}&nbsp;&nbsp;
               {cur_course.title}&nbsp;&nbsp;
               {cur_course.credit}&nbsp;Credits
@@ -458,14 +462,13 @@ class App extends Component {
             <div className="rating__subtitle">Course Rating</div>
 					</Col>
 				</Row>
-          <Row>
-            <div className="cardButton">
-              <Button id="select" value= {cur_course.id} onClick= {this.post_to_cart} variant="success">Add to Schedule</Button>
-              <Button id="wishlist" value= {cur_course.id} onClick= {this.post_to_cart} variant="danger">Add to Wishlist</Button>
-            </div>
-          </Row>
+        <Row>
+          <div className="cardButton">
+            <Button id="select" value= {cur_course.id} onClick= {this.post_to_cart} variant="success">Add to Schedule</Button>
+            <Button id="wishlist" value= {cur_course.id} onClick= {this.post_to_cart} variant="danger">Add to Wishlist</Button>
+          </div>
+        </Row>
 			  </Card.Body>
-			  <br />
 			</Card>
 			courseRows_raw.push([courseRow, cur_course.start_t, cur_course.end_t, cur_course.major, weekdays, cur_course])
 		}
@@ -740,7 +743,7 @@ render(){
 			8.33: '',
 			16.66: '',
 			25: '',
-			33.32: 'Noon',
+			33.32: '12pm',
 			41.65: '',
 			50: '',
 			58.31: '',
@@ -748,7 +751,7 @@ render(){
 			74.97: '',
 			83.3: '',
 			91.63: '',
-			100: '8pm+'
+			100: '8pm'
 		};
 
 
@@ -777,6 +780,7 @@ render(){
           <div className="remove">X</div>
           <div className="send-down">d</div>
         </div>
+        <div classname="line" />
         <div className="dash-labels my-2">Wishlist:</div>
         <div className="schedule-course">
           &bull;  PHL 101
@@ -792,8 +796,6 @@ render(){
 		);
 
 		var v = 'visible';
-
-
 		return (
 			<div className="App">
 				<div className="container-fluid mx-2">
@@ -960,7 +962,7 @@ render(){
 						</div>
 						<div className="modal-body custom-modal">
 							<Row>
-								<Col xs={8}>
+								<Col xs={9}>
 								  <Card className="classCard" bg="light" text="#383838">
 									<Card.Body>
 										<Row>
@@ -992,6 +994,7 @@ render(){
                               <p id="time">{this.state.cur_course.weekday}&nbsp;{this.state.cur_course.start_t}-{this.state.cur_course.end_t}</p>
                               <p className="rowTitle text-margin">Location: </p>
                               <p>{this.state.cur_course.location}</p>
+                              <Button id="syllabus_pop" variant="secondary">SYLLABUS</Button>
                           </div>
                         </div>
                       </Col>
@@ -1008,11 +1011,10 @@ render(){
 											<div className="cardButtonMod">
 												<Button id="select" variant="success">Add to Schedule</Button>
 												<Button id="wishlist" variant="danger">Add to Wishlist</Button>
-												<Button id="syllabus_pop" variant="secondary">SYLLABUS</Button>
+												
 											</div>
 										</Row>
 									</Card.Body>
-									<br />
 								  </Card>
 
 								  <div className="row bootstrap snippets">
@@ -1065,7 +1067,7 @@ render(){
                         Applied Econometrics,Environmental Economics, 
                         Public Economics
                       </p>
-                      <button className="btn btn-secondary mx-2 my-2 personalWebsiteButton">Personal Website</button>
+                      <button className="btn btn-secondary mx-2 personalWebsiteButton">Personal Website</button>
 									   </div>
 								   </div>
 								</Col>
