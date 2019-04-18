@@ -304,11 +304,11 @@ td {
   box-shadow: 0 0 8px 8px white inset;
 }
 
-#wishlist {
+#wishlist, #wishlistMod {
   background: #31906F;
 }
 
-#select {
+#select, #selectMod {
     background: #E25A64;
     opacity: 63%;
     /*padding: .25rem .5rem;
@@ -338,7 +338,7 @@ td {
     padding: 0 0 0 0em;
 }*/
 
-#select, #wishlist, #syllabus_pop {
+#select, #wishlist, #syllabus_pop, #selectMod, #wishlistMod {
   /* margin: 8px 12px; */
   font-weight: bold;
   border: none;
@@ -351,11 +351,14 @@ td {
   font-size: .875rem;
   line-height: 0.75;
   /*border-style: solid;*/
-  
+}
+
+#selectMod, #wishlistMod {
+  margin-left: 130px;
 }
 
 #select, #wishlist {
-  margin-left: 130px;
+  margin: 32px;
 }
 
 #syllabus_pop {

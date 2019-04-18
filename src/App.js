@@ -1009,9 +1009,8 @@ render(){
                     </Row>
 										<Row>
 											<div className="cardButtonMod">
-												<Button id="select" variant="success">Add to Schedule</Button>
-												<Button id="wishlist" variant="danger">Add to Wishlist</Button>
-												
+												<Button id="selectMod" variant="success">Add to Schedule</Button>
+												<Button id="wishlistMod" variant="danger">Add to Wishlist</Button>
 											</div>
 										</Row>
 									</Card.Body>
