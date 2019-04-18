@@ -8,7 +8,7 @@ html, body {
 }
 
 nav {
-	margin-bottom: 32px;
+	margin-bottom: 72px;
 }
 
 .nav-item {
@@ -16,7 +16,8 @@ nav {
   font-family: "Open Sans",sans-serif;
   color: #3d3d3d;
   font-size: 1.05em;
-  font-weight: bold;
+  font-weight: bold !important;
+  color: black;
 }
 
 .nav-item:hover {
@@ -32,12 +33,13 @@ nav {
 	margin-right: 0px;
 	margin-left: 0px;
 	padding-right: 0px;
-	padding-left: 0px;
+  padding-left: 0px;
+  border: none;
 }
 
 #header {
   color: #383838;
-  font-size: 3em;
+  font-size: 3.5em;
 }
 
 .container.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
@@ -66,7 +68,17 @@ nav {
 
 #sloganRow {
 	margin-bottom: 3.5% !important;
-	margin-left: 0px;
+}
+
+.custom-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 18vh;
+  width: 90vw;
+  /* height: 50vh; */
+  max-width: 1500px;
 }
 
 #findCourse {
@@ -74,17 +86,15 @@ nav {
 }
 
 .btn {
-    width: 370px;
-    padding: 18px 0px 18px 0px;
+  width: 400px;
+  padding: 18px 0px 18px 0px;
 }
 
 .btn-danger {
-    /*width: 100%;*/
-    /*height: 75%;*/
     margin-top: 8%;
     background-color: #E38D93 !important;
     border: solid 3px #E25A64;
-    font-size: 1.8em;
+    font-size: 2.2em;
     font-weight: bold;
     border-radius: 0px;
 }
@@ -99,7 +109,7 @@ nav {
 }
 
 .navbar-custom {
-  padding: 0 3em !important;
+  padding: 18px 64px !important;
 }
 
 h1 {
@@ -116,27 +126,29 @@ p {
 	line-height: 1.6;
 }
 
-#bannerCard {
-	margin-left: 0px;
-	margin-right: 0px;
-}
 .card {
 	border-color: transparent;
 }
 
 .card-title {
-	font-size: 26px;
-	text-align: left;
+	font-size: 36px;
+  text-align: left;
+  font-weight: medium;
 }
 
 .card-text {
 	font-size: 16px;
-    line-height: 95%;
+  line-height: 95%;
 }
 
 .card-img-top {
-	width: 110%;
-	height: auto;
+	width: 75%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.no-pad {
+  padding: 0 !important;
 }
 
 #findCourse-button {
@@ -265,8 +277,14 @@ p {
 	transition:all 1s ease .8s
 }
 
+footer {
+  padding: 16px 0;
+  color: white;
+  font-size: 14px;
+}
+
 footer a {
-	color: white;
+  color: white;
 }
 
 @media only screen and (max-width:990px){

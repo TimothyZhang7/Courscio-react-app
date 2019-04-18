@@ -19,7 +19,7 @@ class Home extends Component{
 
   <div>
     <nav className="navbar navbar-expand-lg navbar-light navbar-custom">
-      <div className="container col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div className="container-fluid col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <Link to="/home" className="col-1 ml-3" >
           <img className="image-fluid home-logo" id="logo" src={LogoLarge} alt="logo"/>
         </Link>
@@ -37,36 +37,36 @@ class Home extends Component{
       </div>
     </nav>
 
-    <div className="container" id="mainPage">
+    <div className="custom-cont" id="mainPage">
         <div className="row" id="sloganRow">
           <div className="col-md-7 col-lg-7">
             <h1 id="header">Make an informed decision when selecting courses&#46;</h1>
           </div>
 
-          <div className="col-11 col-md-4 col-lg-3 offset-lg-1 mx-auto" id="findCourse">
+          <div className="col-11 col-md-4 col-lg-3 offset-lg-1" id="findCourse">
             <Link to="/" id="findCourse-button" ><button type="button" className="btn btn-danger">Find Courses</button></Link>
           </div>
         </div>
 
-        <div className="row d-md-none mt-5">
+        <div className="row d-md-none">
           <h2>
             Features
             <img src="/icons/Logo-l.png" height="45" />
           </h2>
         </div>
 
-        <div className="row" id="bannerCard">
-          <div className="col-sm-12 col-md-3 col-lg-3">
+        <div className="row my-4" id="bannerCard">
+          <div className="no-pad col-sm-12 col-md-3 col-lg-3">
             <div className="card" id="comments">
               <img className="card-img-top" src="/comics/Comments.png" id="commentPic" alt="Card image cap"/>
               <div className="card-body">
                 <h5 className="card-title">Comments</h5>
-                <p className="card-text">See what your peers think about the className from their latest experiences.</p>
+                <p className="card-text">See what your peers think about the class from their latest experiences.</p>
               </div>
             </div>
           </div>
 
-          <div className="col-sm-12 col-md-3 col-lg-3">
+          <div className="no-pad col-sm-12 col-md-3 col-lg-3">
             <div className="card" id="coureRating">
               <img className="card-img-top" src="/comics/Course_Rating.png" alt="Card image cap"/>
               <div className="card-body">
@@ -76,7 +76,7 @@ class Home extends Component{
             </div>
           </div>
 
-          <div className="col-sm-12 col-md-3 col-lg-3">
+          <div className="no-pad col-sm-12 col-md-3 col-lg-3">
             <div className="card" id="syllabus" >
               <img className="card-img-top" src="/comics/Syllabus.png" alt="Card image cap"/>
               <div className="card-body">
@@ -86,7 +86,7 @@ class Home extends Component{
             </div>
           </div>
 
-          <div className="col-sm-12 col-md-3 col-lg-3">
+          <div className="no-pad col-sm-12 col-md-3 col-lg-3">
             <div className="card" id="instructor" >
             <img className="card-img-top right" src="/comics/Instructor.png" alt="Card image cap"/>
             <div className="card-body">
@@ -243,8 +243,8 @@ class Home extends Component{
         </div>
     </div>
 
-    <footer className="page-footer font-small bg-dark col-12 mt-5 py-2" style={{"font-size": "12px;"}, {"color":"white"}}>
-        <div style={{"backgroundColor": "#E25A64"}}>
+    <footer className="page-footer font-small bg-dark col-12 mt-5 py-2">
+        {/* <div style={{"backgroundColor": "#E25A64"}}>
           <div className="container">
             <div className="row py-4 d-flex align-items-center">
               <div className="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
@@ -256,32 +256,19 @@ class Home extends Component{
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="container text-center text-md-left mt-3">
-
-
           <div className="row mt-3">
-
-
             <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-
               <h6 className="text-uppercase font-weight-bold">Courscio</h6>
-              <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/>
-
+              {/* <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/> */}
                 <a className="fb-ic" href="https://www.facebook.com/courscio.official/" target="_blank"><i className="fab fa-facebook-f white-text mr-4"> </i></a>
-              
                 <a className="ins-ic" href="https://www.instagram.com/courscio_official/" target="_blank"><i className="fab fa-instagram white-text"> </i></a>
-
             </div>
-           
-
-            
             <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-
-              
               <h6 className="text-uppercase font-weight-bold">Company</h6>
-              <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/>
+              {/* <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/> */}
               <p>
                 <a href="#aboutCourscio">About Us</a>
               </p>
@@ -290,54 +277,32 @@ class Home extends Component{
               </p>
 
             </div>
-            
 
-            
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-              
               <h6 className="text-uppercase font-weight-bold">Useful links</h6>
-               <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/>
+               {/* <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/> */}
               <p>
-                <a href="#!">Search Course</a>
+                <a href="#!">Search for Courses</a>
               </p>
             </div>
-            
-
-            
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-              
               <h6 className="text-uppercase font-weight-bold">Contact</h6>
-               <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/>
-              <p>
-                <i className="fas fa-home mr-3"></i> Rochester, NY 14627, US</p>
-              <p>
-                <i className="fas fa-envelope mr-3"></i> info@courscio.com</p>
-              
+               {/* <hr className="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style={{"width": "60px"}}/> */}
+              <p><i className="fas fa-home mr-3"></i> Rochester, NY 14627, US</p>
+              <p><i className="fas fa-envelope mr-3"></i> info@courscio.com</p>
             </div>
-            
-
           </div>
-          
-
         </div>
-        
-
-        
         <div className="footer-copyright text-center py-3">© 2019 Copyright:
           <a href="https://courscio.com"> courscio.com</a>
         </div>
-        
-
       </footer>
-      
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
   </div>
 
-</div>
+  </div>
     )
   }
 }
