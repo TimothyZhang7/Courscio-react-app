@@ -21,7 +21,7 @@ import 'fullcalendar-scheduler';
 import 'fullcalendar/dist/fullcalendar.css';
 import 'fullcalendar-scheduler/dist/scheduler.css';
 
-const API = '/v1/';
+const API = 'https://api.courscio.com/v1/';
 
 const querystring = require('query-string');
 
@@ -294,6 +294,7 @@ class App extends Component {
 	async getUserSelections(){
 		console.log('Requesting user whole cart')
 		var query = 'user/'+String(this.state.uid)+'/cartItems'
+		console.log(this.state.auth)
 		var response = await axios.get(API + query,
 			{headers: {
 				'Authorization' : this.state.auth

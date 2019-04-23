@@ -37,6 +37,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "https://api.courscio.com/",
+  "proxy": "https://www.courscio.com",
   "homepage": "."
 }

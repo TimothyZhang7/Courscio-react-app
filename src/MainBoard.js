@@ -8,7 +8,8 @@ import Search from './Search';
 import LogoLarge from './icons/Logo-l.png';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-const API = '/v1/'
+
+const API = 'https://api.courscio.com/v1/'
 
 const querystring = require('query-string');
 
@@ -44,18 +45,33 @@ class MainBoard extends Component{
 //		console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 		console.log(id_token)
 
-		var responsebody = await axios.post(API+'auth', querystring.stringify({
-			email: profile.getEmail(),
-			token: id_token
-		}))
+		var bodyFormData = new FormData();
+		bodyFormData.set('email',profile.getEmail());
+		bodyFormData.set('token',id_token);
+
+		var responsebody = await axios({
+				method: 'POST',
+				url: API + 'auth',
+				data: bodyFormData
+		})
 		.catch(function (error) {
 			console.log(error)
 		})
 		console.log(responsebody)
+		var id = -1
+		var auth = ""
+		var login = false
+		if (responsebody !== undefined){
+			id = responsebody.data.id
+			auth = responsebody.headers.authorization
+			login = true
+		}else{
+			alert("Failed to retrieve user info")
+		}
 		this.setState({
-			uid: responsebody.data.id,
-			login: true,
-			auth: responsebody.headers.authorization
+			uid: id,
+			login: login,
+			auth: auth
 		})
 
 		
